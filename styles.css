@@ -148,6 +148,24 @@ body {
 
 .about p:last-child { margin-bottom: 0; }
 
+.about .label {
+  color: var(--saffron);
+  font-weight: 500;
+}
+
+.about a {
+  color: var(--cream);
+  text-decoration: none;
+  border-bottom: 1px solid var(--card-border);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.about a:hover,
+.about a:focus-visible {
+  color: var(--saffron);
+  border-color: var(--saffron);
+}
+
 .placeholder-note {
   font-style: italic;
   opacity: 0.75;
