@@ -1,0 +1,258 @@
+/* ===================================================================
+   Sarayu Kondaveeti — Portfolio
+   Palette: deep indigo night-sky + gold/saffron accents + green
+   Themes woven in subtly: nature (leaf motifs), space/defense (stars,
+   fine grid lines), Indian (mandala medallions, gold linework)
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --indigo-deep: #0d0a26;
+  --indigo-mid: #1a1642;
+  --indigo-soft: #241f5e;
+  --gold: #d9a441;
+  --saffron: #f0a94e;
+  --green: #6a9169;
+  --green-dark: #33492f;
+  --cream: #f3ecd9;
+  --muted: #b7b0d6;
+  --card-bg: rgba(243, 236, 217, 0.04);
+  --card-border: rgba(217, 164, 65, 0.35);
+  --max-width: 880px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--cream);
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5) 0, transparent 40%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.4) 0, transparent 40%),
+    radial-gradient(1.5px 1.5px at 60% 15%, rgba(255,255,255,0.5) 0, transparent 40%),
+    radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,0.35) 0, transparent 40%),
+    radial-gradient(1px 1px at 45% 85%, rgba(255,255,255,0.4) 0, transparent 40%),
+    radial-gradient(1.5px 1.5px at 90% 30%, rgba(255,255,255,0.45) 0, transparent 40%),
+    radial-gradient(1px 1px at 20% 45%, rgba(255,255,255,0.3) 0, transparent 40%),
+    linear-gradient(180deg, var(--indigo-deep) 0%, var(--indigo-mid) 55%, var(--indigo-soft) 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* subtle fine grid — a nod to defense/technical schematics */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(217,164,65,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217,164,65,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* mandala medallions tucked in the corners */
+.mandala {
+  position: fixed;
+  width: 340px;
+  height: 340px;
+  color: var(--gold);
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+.mandala.top-left { top: -90px; left: -90px; }
+.mandala.bottom-right { bottom: -90px; right: -90px; }
+
+.page-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+}
+
+/* ---------- Header / Name ---------- */
+.site-title {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  letter-spacing: 0.03em;
+  margin: 0;
+  color: var(--cream);
+  text-shadow: 0 0 18px rgba(240, 169, 78, 0.25);
+}
+
+.site-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tagline {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  margin: 10px 0 0;
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: 32px;
+  margin: 22px auto 8px;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+/* ---------- Nav tabs (homepage only) ---------- */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 36px 0 8px;
+}
+
+.tabs a {
+  position: relative;
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  padding: 12px 26px;
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  background: var(--card-bg);
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.tabs a:hover,
+.tabs a:focus-visible {
+  border-color: var(--gold);
+  background: rgba(217, 164, 65, 0.12);
+  color: var(--saffron);
+}
+
+/* ---------- About section ---------- */
+.about {
+  margin-top: 56px;
+  padding: 34px 38px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  background: var(--card-bg);
+  position: relative;
+}
+
+.about h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--saffron);
+  margin: 0 0 14px;
+  letter-spacing: 0.03em;
+}
+
+.about p {
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.about p:last-child { margin-bottom: 0; }
+
+.placeholder-note {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+/* ---------- Subpages ---------- */
+.crumb {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.crumb:hover { color: var(--saffron); border-color: var(--saffron); }
+
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  color: var(--cream);
+  margin: 0 0 6px;
+}
+
+.page-sub {
+  color: var(--muted);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin: 0 0 40px;
+}
+
+/* placeholder content card, ready to be replaced later */
+.content-slot {
+  border: 1px dashed var(--card-border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  padding: 60px 30px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.content-slot .glyph {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 18px;
+  color: var(--green);
+  opacity: 0.85;
+}
+
+.content-slot h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--cream);
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin: 0 0 8px;
+}
+
+.content-slot p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  margin-top: 70px;
+  color: var(--muted);
+  opacity: 0.6;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 560px) {
+  .about { padding: 26px 22px; }
+  .tabs a { padding: 10px 18px; font-size: 0.88rem; }
+  .mandala { width: 220px; height: 220px; }
+}
