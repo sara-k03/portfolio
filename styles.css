@@ -104,13 +104,11 @@ body {
 
 .tabs a {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 200px;
   color: var(--cream);
   text-decoration: none;
-  padding: 14px 26px;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  padding: 12px 26px;
   border: 1px solid var(--card-border);
   border-radius: 2px;
   background: var(--card-bg);
@@ -122,16 +120,6 @@ body {
   border-color: var(--gold);
   background: rgba(217, 164, 65, 0.12);
   color: var(--saffron);
-}
-
-.tab-title {
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-}
-
-.tab-blurb {
-  font-size: 0.78rem;
-  color: var(--muted);
 }
 
 /* ---------- About section ---------- */
