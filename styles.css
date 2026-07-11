@@ -236,7 +236,7 @@ body {
 /* ---------- Project grid (tiles) ---------- */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
@@ -263,8 +263,18 @@ body {
   font-weight: 600;
   font-size: 1.25rem;
   color: var(--saffron);
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   letter-spacing: 0.02em;
+}
+
+.project-tile .tile-date {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--muted);
+  opacity: 0.55;
+  letter-spacing: 0.04em;
+  margin: 0 0 12px;
 }
 
 .project-tile p {
