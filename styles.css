@@ -34,14 +34,22 @@ body {
   font-family: 'Poppins', sans-serif;
   color: var(--cream);
   background:
-    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5) 0, transparent 40%),
-    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.4) 0, transparent 40%),
-    radial-gradient(1.5px 1.5px at 60% 15%, rgba(255,255,255,0.5) 0, transparent 40%),
-    radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,0.35) 0, transparent 40%),
-    radial-gradient(1px 1px at 45% 85%, rgba(255,255,255,0.4) 0, transparent 40%),
-    radial-gradient(1.5px 1.5px at 90% 30%, rgba(255,255,255,0.45) 0, transparent 40%),
-    radial-gradient(1px 1px at 20% 45%, rgba(255,255,255,0.3) 0, transparent 40%),
-    linear-gradient(180deg, var(--indigo-deep) 0%, var(--indigo-mid) 55%, var(--indigo-soft) 100%);
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.4) 0, transparent 40%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.3) 0, transparent 40%),
+    radial-gradient(1.5px 1.5px at 60% 15%, rgba(255,255,255,0.4) 0, transparent 40%),
+    radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,0.25) 0, transparent 40%),
+    radial-gradient(1px 1px at 45% 85%, rgba(255,255,255,0.3) 0, transparent 40%),
+    repeating-linear-gradient(115deg,
+      rgba(107, 178, 168, 0.10) 0px,
+      rgba(107, 178, 168, 0.10) 2px,
+      transparent 2px,
+      transparent 90px),
+    repeating-linear-gradient(100deg,
+      rgba(217, 164, 65, 0.05) 0px,
+      rgba(217, 164, 65, 0.05) 1px,
+      transparent 1px,
+      transparent 140px),
+    linear-gradient(160deg, var(--indigo-deep) 0%, #142d3a 45%, #1c4a45 75%, var(--indigo-soft) 100%);
   background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
@@ -54,9 +62,9 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(217,164,65,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(217,164,65,0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(217,164,65,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217,164,65,0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
   pointer-events: none;
   z-index: 0;
 }
