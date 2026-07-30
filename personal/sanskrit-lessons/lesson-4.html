@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanskrit Lesson 4: Akārānta Puṃliṅga — Sarayu Kondaveeti</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+  <span class="mandala top-left" aria-hidden="true"></span>
+  <span class="mandala bottom-right" aria-hidden="true"></span>
+
+  <div class="page-wrap">
+
+    <a class="crumb" href="../sanskrit.html">&larr; Sanskrit</a>
+
+    <h1 class="page-title">Lesson 4: Akārānta Puṃliṅga (Rāma Śabdarūpa)</h1>
+
+    <section class="project-detail">
+
+      <p><strong>Akārānta Puṃliṅga</strong> means masculine words ending in the letter <em>-a</em>. <strong>Rāma Śabdarūpa</strong> is set of noun forms for the proper noun, Rāma.</p>
+
+      <h3>Rāma Śabdarūpa</h3>
+
+      <div class="table-wrap">
+        <table class="lesson-table">
+          <tr>
+            <th>Ekavacana<br>(singular)</th>
+            <th>Dvivacana<br>(dual)</th>
+            <th>Bahuvacana<br>(plural)</th>
+            <th>Usage</th>
+          </tr>
+          <tr>
+            <td>rāmaḥ</td>
+            <td>rāmau</td>
+            <td>rāmāḥ</td>
+            <td>subject</td>
+          </tr>
+          <tr>
+            <td>rāmam</td>
+            <td>rāmau</td>
+            <td>rāmān</td>
+            <td>object</td>
+          </tr>
+          <tr>
+            <td>rāmeṇa</td>
+            <td>rāmābhyām</td>
+            <td>rāmaiḥ</td>
+            <td>by / with / through</td>
+          </tr>
+          <tr>
+            <td>rāmāya</td>
+            <td>rāmābhyām</td>
+            <td>rāmebhyaḥ</td>
+            <td>for</td>
+          </tr>
+          <tr>
+            <td>rāmāt</td>
+            <td>rāmābhyām</td>
+            <td>rāmebhyaḥ</td>
+            <td>from</td>
+          </tr>
+          <tr>
+            <td>rāmasya</td>
+            <td>rāmayoḥ</td>
+            <td>rāmāṇām</td>
+            <td>of</td>
+          </tr>
+          <tr>
+            <td>rāme</td>
+            <td>rāmayoḥ</td>
+            <td>rāmeṣu</td>
+            <td>in / on / at</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-note">Each row is one vibhakti (case); each column is one vacana (grammatical number).</div>
+
+      <h3>Example Sentences</h3>
+
+      <ol>
+        <li><em>Rāmaḥ vidyālayaṁ gacchati.</em> — "Rama goes to school."</li>
+        <li><em>Kṛṣṇaḥ Balarāmaṁ tāḍayati.</em> — "Krishna hits Balarama."</li>
+        <li><em>Sītā rāmeṇa saha vanaṁ gacchati.</em> — "Sita goes to the forest with Rama."</li>
+        <li><em>Sītā rāmāya phalaṁ ānayati.</em> — "Sita brings a fruit for Rama."</li>
+        <li><em>Rāmāt romaḥ patati.</em> — "A hair falls from Rama."</li>
+        <li><em>Rāmasya mātā Kausalyā.</em> — "Rama's mother is Kausalya."</li>
+        <li><em>Rāme ānanda udbhavati.</em> — "Joy arises in Rama."</li>
+      </ol>
+
+      <h3>Practice: Rāma Śabdarūpa Drill</h3>
+
+      <p>Type the correct form of <em>rāma</em> for the number and meaning shown. Use the letter palette below the input to insert diacritics; answers are graded with exact marks.</p>
+
+      <div class="drill" id="drill">
+        <p class="drill-prompt" id="drill-prompt">Loading…</p>
+        <div class="drill-input-row">
+          <input type="text" id="drill-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the rāma form here">
+          <button id="drill-check" type="button">Check</button>
+          <div class="drill-controls">
+            <button id="drill-next" type="button" style="display:none;">Next &rarr;</button>
+          </div>
+        </div>
+        <div class="diacritic-palette" id="diacritic-palette">
+          <button type="button">ā</button>
+          <button type="button">ī</button>
+          <button type="button">ū</button>
+          <button type="button">ṛ</button>
+          <button type="button">ṝ</button>
+          <button type="button">ṅ</button>
+          <button type="button">ñ</button>
+          <button type="button">ṭ</button>
+          <button type="button">ḍ</button>
+          <button type="button">ṇ</button>
+          <button type="button">ś</button>
+          <button type="button">ṣ</button>
+          <button type="button">ṁ</button>
+          <button type="button">ḥ</button>
+        </div>
+        <p class="drill-feedback" id="drill-feedback"></p>
+        <p class="drill-score" id="drill-score">Score: 0 / 0</p>
+      </div>
+
+    </section>
+
+    <div class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: Antasthāḥ, Anusvāra, and Visarga</a>
+      <span></span>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var vibhaktiData = [
+        { gloss: 'subject', forms: ['rāmaḥ', 'rāmau', 'rāmāḥ'] },
+        { gloss: 'object', forms: ['rāmam', 'rāmau', 'rāmān'] },
+        { gloss: 'by / with / through', forms: ['rāmeṇa', 'rāmābhyām', 'rāmaiḥ'] },
+        { gloss: 'for', forms: ['rāmāya', 'rāmābhyām', 'rāmebhyaḥ'] },
+        { gloss: 'from', forms: ['rāmāt', 'rāmābhyām', 'rāmebhyaḥ'] },
+        { gloss: 'of', forms: ['rāmasya', 'rāmayoḥ', 'rāmāṇām'] },
+        { gloss: 'in / on / at', forms: ['rāme', 'rāmayoḥ', 'rāmeṣu'] }
+      ];
+      var vacanaNames = ['ekavacana', 'dvivacana', 'bahuvacana'];
+
+      var deck = [];
+      var current = null;
+      var correctCount = 0;
+      var totalCount = 0;
+
+      var promptEl = document.getElementById('drill-prompt');
+      var inputEl = document.getElementById('drill-input');
+      var checkBtn = document.getElementById('drill-check');
+      var nextBtn = document.getElementById('drill-next');
+      var feedbackEl = document.getElementById('drill-feedback');
+      var scoreEl = document.getElementById('drill-score');
+
+      function buildDeck() {
+        deck = [];
+        vibhaktiData.forEach(function (v) {
+          v.forms.forEach(function (form, ni) {
+            deck.push({ gloss: v.gloss, vacana: vacanaNames[ni], answer: form });
+          });
+        });
+        for (var i = deck.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = deck[i]; deck[i] = deck[j]; deck[j] = tmp;
+        }
+      }
+
+      function nextQuestion() {
+        if (deck.length === 0) buildDeck();
+        current = deck.pop();
+        promptEl.textContent = current.gloss + ', ' + current.vacana + ':';
+        inputEl.value = '';
+        inputEl.disabled = false;
+        inputEl.focus();
+        feedbackEl.textContent = '';
+        feedbackEl.className = 'drill-feedback';
+        checkBtn.style.display = '';
+        nextBtn.style.display = 'none';
+      }
+
+      function checkAnswer() {
+        var guess = inputEl.value.trim().toLowerCase();
+        var answer = current.answer.toLowerCase();
+        totalCount++;
+        if (guess === answer) {
+          correctCount++;
+          feedbackEl.textContent = 'Correct!';
+          feedbackEl.className = 'drill-feedback correct';
+        } else {
+          feedbackEl.textContent = 'Not quite — the answer is ' + current.answer + '.';
+          feedbackEl.className = 'drill-feedback incorrect';
+        }
+        inputEl.disabled = true;
+        checkBtn.style.display = 'none';
+        nextBtn.style.display = '';
+        scoreEl.textContent = 'Score: ' + correctCount + ' / ' + totalCount;
+      }
+
+      checkBtn.addEventListener('click', checkAnswer);
+      nextBtn.addEventListener('click', nextQuestion);
+      inputEl.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (nextBtn.style.display !== 'none') {
+            nextQuestion();
+          } else {
+            checkAnswer();
+          }
+        }
+      });
+
+      document.querySelectorAll('.diacritic-palette button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var char = btn.textContent;
+          var start = inputEl.selectionStart == null ? inputEl.value.length : inputEl.selectionStart;
+          var end = inputEl.selectionEnd == null ? inputEl.value.length : inputEl.selectionEnd;
+          inputEl.value = inputEl.value.slice(0, start) + char + inputEl.value.slice(end);
+          inputEl.focus();
+          inputEl.selectionStart = inputEl.selectionEnd = start + char.length;
+        });
+      });
+
+      buildDeck();
+      nextQuestion();
+    })();
+  </script>
+
+</body>
+</html>
