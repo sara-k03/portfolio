@@ -396,103 +396,27 @@ body {
   border-color: var(--saffron);
 }
 
-/* ---------- Practice drill ---------- */
-.drill {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  padding: 24px;
-  margin: 20px 0;
-}
-
-.drill-prompt {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  color: var(--saffron);
-  margin: 0 0 16px;
-}
-
-.drill-input-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.drill-input-row input {
-  flex: 1;
-  min-width: 180px;
-  background: rgba(243, 236, 217, 0.06);
-  border: 1px solid var(--card-border);
-  border-radius: 6px;
-  padding: 10px 14px;
-  color: var(--cream);
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-}
-
-.drill-input-row input:focus {
-  outline: none;
-  border-color: var(--saffron);
-}
-
-.drill-input-row button,
-.drill-controls button {
-  background: transparent;
-  border: 1px solid var(--saffron);
-  color: var(--saffron);
-  border-radius: 6px;
-  padding: 10px 18px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
+/* ---------- Flashcard table cells ---------- */
+.flash-cell {
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  user-select: none;
 }
 
-.drill-input-row button:hover,
-.drill-controls button:hover {
-  background: var(--saffron);
-  color: var(--indigo-deep);
+.flash-cell:hover {
+  outline: 1px solid var(--saffron);
+  outline-offset: -1px;
 }
 
-.diacritic-palette {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 14px 0;
+.flash-cell:not(.revealed) {
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(243, 236, 217, 0.03) 0 6px,
+    rgba(243, 236, 217, 0.07) 6px 12px
+  );
 }
 
-.diacritic-palette button {
-  background: rgba(243, 236, 217, 0.06);
-  border: 1px solid var(--card-border);
-  color: var(--cream);
-  border-radius: 4px;
-  padding: 4px 10px;
-  font-size: 0.95rem;
-  cursor: pointer;
-}
-
-.diacritic-palette button:hover {
-  border-color: var(--saffron);
-  color: var(--saffron);
-}
-
-.drill-feedback {
-  min-height: 24px;
-  margin: 14px 0;
-  font-weight: 500;
-}
-
-.drill-feedback.correct { color: var(--green); }
-.drill-feedback.incorrect { color: #c0605c; }
-
-.drill-controls {
-  margin-bottom: 14px;
-}
-
-.drill-score {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin: 0;
+.flash-cell:not(.revealed) .flash-word {
+  visibility: hidden;
 }
 
 /* ---------- Footer ---------- */
