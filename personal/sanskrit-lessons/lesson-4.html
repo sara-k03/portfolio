@@ -203,16 +203,6 @@
 
       checkBtn.addEventListener('click', checkAnswer);
       nextBtn.addEventListener('click', nextQuestion);
-      inputEl.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          if (nextBtn.style.display !== 'none') {
-            nextQuestion();
-          } else {
-            checkAnswer();
-          }
-        }
-      });
 
       document.querySelectorAll('.diacritic-palette button').forEach(function (btn) {
         btn.addEventListener('click', function () {
