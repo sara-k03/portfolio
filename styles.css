@@ -429,6 +429,50 @@ body {
   visibility: hidden;
 }
 
+/* ---------- Shloka analysis ---------- */
+.shloka {
+  margin: 0 0 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.shloka:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.shloka-citation {
+  color: var(--saffron);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin: 0 0 8px;
+}
+
+.shloka-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--cream);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 0 0 14px;
+}
+
+.shloka-placeholder {
+  border: 1px dashed var(--card-border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 /* ---------- Footer ---------- */
 footer {
   text-align: center;
