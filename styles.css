@@ -377,7 +377,9 @@ body {
 }
 
 .lesson-note strong,
-.lesson-note em {
+.lesson-note em,
+.lesson-note ul,
+.lesson-note li {
   color: inherit;
 }
 
