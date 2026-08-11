@@ -376,6 +376,11 @@ body {
   font-size: 0.92rem;
 }
 
+.lesson-note strong,
+.lesson-note em {
+  color: inherit;
+}
+
 .lesson-nav {
   display: flex;
   justify-content: space-between;
