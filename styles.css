@@ -313,6 +313,12 @@ body {
 
 .project-detail ul li { margin-bottom: 6px; }
 
+.project-detail hr {
+  border: none;
+  border-top: 1px solid var(--card-border);
+  margin: 0 0 28px;
+}
+
 .project-detail a {
   color: var(--cream);
   border-bottom: 1px solid var(--card-border);
