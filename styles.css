@@ -351,6 +351,10 @@ body {
   margin: 32px 0 10px;
 }
 
+.project-detail h3:first-child {
+  margin-top: 0;
+}
+
 .project-detail ul {
   margin: 0;
   padding-left: 20px;
