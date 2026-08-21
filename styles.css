@@ -1,17 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Pirata+One&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-  --indigo-deep: #0d0a26;
-  --indigo-mid: #1a1642;
-  --indigo-soft: #241f5e;
-  --gold: #d9a441;
-  --saffron: #f0a94e;
-  --green: #6a9169;
-  --green-dark: #33492f;
-  --cream: #f3ecd9;
-  --muted: #b7b0d6;
-  --card-bg: rgba(243, 236, 217, 0.04);
-  --card-border: rgba(217, 164, 65, 0.35);
+  --background: #212123;
+  --gold: #d6ad62;
+  --saffron: #e3a45d;
+  --green: #74786d;
+  --cream: #f2ede1;
+  --muted: #aaa99f;
+  --card-bg: rgba(242, 237, 225, 0.04);
+  --card-border: rgba(214, 173, 98, 0.32);
   --max-width: 880px;
 }
 
@@ -26,37 +23,12 @@ html, body {
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--cream);
-  background:
-    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.4) 0, transparent 40%),
-    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.3) 0, transparent 40%),
-    radial-gradient(1.5px 1.5px at 60% 15%, rgba(255,255,255,0.4) 0, transparent 40%),
-    radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,0.25) 0, transparent 40%),
-    radial-gradient(1px 1px at 45% 85%, rgba(255,255,255,0.3) 0, transparent 40%),
-    linear-gradient(160deg, var(--indigo-deep) 0%, #224c62 45%, #2d766e 75%, var(--indigo-soft) 100%);
+  background: var(--background);
   background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
   line-height: 1.6;
 }
-
-/* mandala medallions tucked in the corners */
-.mandala {
-  position: fixed;
-  width: 340px;
-  height: 340px;
-  opacity: 0.16;
-  background-color: var(--cream);
-  -webkit-mask-image: url('assets/mandala.svg');
-  mask-image: url('assets/mandala.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  pointer-events: none;
-  z-index: 0;
-}
-.mandala.top-left { top: -90px; left: -90px; }
-.mandala.bottom-right { bottom: -90px; right: -90px; }
 
 .page-wrap {
   position: relative;
@@ -71,11 +43,10 @@ body {
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
-  font-size: clamp(2.6rem, 6vw, 4rem);
-  letter-spacing: 0.03em;
+  font-size: clamp(2.8rem, 7vw, 4.4rem);
+  letter-spacing: 0.02em;
   margin: 0;
   color: var(--cream);
-  text-shadow: 0 0 18px rgba(240, 169, 78, 0.25);
 }
 
 .site-title a {
@@ -234,6 +205,55 @@ body {
 }
 
 /* ---------- Project grid (tiles) ---------- */
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 24px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.tag-chip:hover {
+  border-color: var(--gold);
+  color: var(--cream);
+}
+
+.tag-chip.active {
+  border-color: var(--gold);
+  background: rgba(217, 164, 65, 0.18);
+  color: var(--saffron);
+}
+
+.tag-chip .tag-x {
+  display: none;
+  font-size: 0.9rem;
+  line-height: 1;
+  opacity: 0.65;
+}
+
+.tag-chip.active .tag-x {
+  display: inline-block;
+}
+
+.tag-chip .tag-x:hover {
+  opacity: 1;
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -289,6 +309,32 @@ body {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.project-tile p.excerpt {
+  font-style: italic;
+  color: var(--muted);
+  position: relative;
+  padding-left: 20px;
+}
+
+.project-tile p.excerpt::before {
+  content: '\201C';
+  position: absolute;
+  left: -2px;
+  top: -8px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.project-tile p.excerpt::after {
+  content: '\2026';
+  font-style: normal;
+  opacity: 0.6;
 }
 
 /* ---------- Project detail page ---------- */
@@ -478,8 +524,6 @@ body {
 }
 
 .shloka-placeholder {
-  border: 1px dashed var(--card-border);
-  border-radius: 8px;
   padding: 10px 16px;
   color: var(--muted);
   font-size: 0.9rem;
@@ -499,5 +543,4 @@ footer {
 @media (max-width: 560px) {
   .about { padding: 26px 22px; }
   .tabs a { padding: 10px 18px; font-size: 0.88rem; }
-  .mandala { width: 220px; height: 220px; }
 }
