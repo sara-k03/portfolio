@@ -46,7 +46,7 @@ body {
   font-size: clamp(2.8rem, 7vw, 4.4rem);
   letter-spacing: 0.02em;
   margin: 0;
-  color: var(--cream);
+  color: var(--saffron);
 }
 
 .site-title a {
