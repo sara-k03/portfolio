@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valid Anagram — Sarayu Kondaveeti</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+  <div class="page-wrap">
+
+    <a class="crumb" href="../leetcode-diaries.html">&larr; LeetCode Diaries</a>
+
+    <h1 class="page-title">Valid Anagram</h1>
+
+    <section class="project-detail">
+
+      <div class="code-block">
+        <pre class="code-line-numbers" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre>
+        <pre class="code-content"><code><span class="code-kw">class</span> <span class="code-type">Solution</span>(<span class="code-type">object</span>):
+    <span class="code-kw">def</span> isAnagram(<span class="code-type">self</span>, s, t):
+
+        <span class="code-doc"># base case</span>
+        <span class="code-kw">if</span> len(s) != len(t):
+            <span class="code-kw">return</span> <span class="code-type">False</span>
+
+        <span class="code-doc"># dictionary</span>
+        counts = {}
+
+        <span class="code-doc"># syntax: dictionary.get(key, default_value), default_value ensures there's no error</span>
+        <span class="code-kw">for</span> char <span class="code-kw">in</span> s:
+            counts[char] = counts.get(char, 0) + 1
+
+        <span class="code-kw">for</span> char <span class="code-kw">in</span> t:
+            counts[char] = counts.get(char, 0) - 1
+
+        <span class="code-kw">for</span> v <span class="code-kw">in</span> counts.values():
+            <span class="code-kw">if</span> <span class="code-kw">not</span> v == 0:
+                <span class="code-kw">return</span> <span class="code-type">False</span>
+
+        <span class="code-kw">return</span> <span class="code-type">True</span></code></pre>
+      </div>
+
+      <p><strong>Source:</strong> <a href="https://leetcode.com/problems/valid-anagram/description/?envType=problem-list-v2&amp;envId=2yvx2ha6" target="_blank" rel="noopener noreferrer">LeetCode</a></p>
+      <p><strong>Pattern:</strong> Frequency Counting</p>
+      <p><strong>Data Structure:</strong> Hash Map</p>
+      <p><strong>Time:</strong> O(n)</p>
+      <p><strong>Space:</strong> O(n)</p>
+      <p><strong>Comments:</strong></p>
+      <ul>
+        <li>This problem is considered the simplest of the <em>Frequency Counting</em> pattern. In terms of code, my original solution was actually simpler than the one above. It was one line that is sorted(t) == sorted(s). However, this is technically n log n because of the sorting. Learning the frequency counting pattern also provides the basis for future problems.</li>
+        <li>The time complexity is O(n) because each for loop, which iterates through n characters, accesses the dictionary/hash table which is O(1).</li>
+        <li>The space complexity is O(n) because the dictionary can contain up to n distinct characters in the worst case.</li>
+      </ul>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

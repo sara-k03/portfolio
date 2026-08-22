@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contains Duplicate — Sarayu Kondaveeti</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+  <div class="page-wrap">
+
+    <a class="crumb" href="../leetcode-diaries.html">&larr; LeetCode Diaries</a>
+
+    <h1 class="page-title">Contains Duplicate</h1>
+
+    <section class="project-detail">
+
+      <div class="code-block">
+        <pre class="code-line-numbers" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre>
+        <pre class="code-content"><code><span class="code-kw">class</span> <span class="code-type">Solution</span>(<span class="code-type">object</span>):
+    <span class="code-kw">def</span> containsDuplicate(<span class="code-type">self</span>, nums):
+        seen = <span class="code-type">set</span>()
+
+        <span class="code-kw">for</span> n <span class="code-kw">in</span> nums:
+            <span class="code-kw">if</span> n <span class="code-kw">in</span> seen:
+                <span class="code-kw">return</span> <span class="code-type">True</span>
+            seen.add(n)
+
+        <span class="code-kw">return</span> <span class="code-type">False</span></code></pre>
+      </div>
+
+      <p><strong>Source:</strong> <a href="https://leetcode.com/problems/contains-duplicate/description/?envType=problem-list-v2&amp;envId=2yvx2ha6" target="_blank" rel="noopener noreferrer">LeetCode</a></p>
+      <p><strong>Pattern:</strong> Seen Elements</p>
+      <p><strong>Data Structure:</strong> Hash Set</p>
+      <p><strong>Time:</strong> O(n)</p>
+      <p><strong>Space:</strong> O(n)</p>
+      <p><strong>Comments:</strong></p>
+      <ul>
+        <li>This is considered the simplest of the <em>Seen Elements</em> pattern, where you keep track of elements you've encountered so you can determine whether or not you've encountered them before in the future.</li>
+        <li>The time complexity is O(n) because adding/searching a set is O(1) due to the underlying structure being a hash table. Since we perform a search of the set (and possibly an addition to the set) for every element in the array in the worst case, the time complexity is O(n).</li>
+        <li>The space complexity is also O(n) because, in the worst case, the data structure can grow proportionally to the size of the input.</li>
+      </ul>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

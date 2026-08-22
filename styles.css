@@ -534,6 +534,51 @@ body {
   margin: 0;
 }
 
+/* ---------- Code blocks ---------- */
+.code-block {
+  display: flex;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin: 0 0 24px;
+}
+
+.code-line-numbers {
+  flex: 0 0 auto;
+  margin: 0 16px 0 0;
+  padding-right: 16px;
+  border-right: 1px solid var(--card-border);
+  color: var(--muted);
+  opacity: 0.5;
+  text-align: right;
+  user-select: none;
+}
+
+.code-content {
+  flex: 1 1 auto;
+  margin: 0;
+  color: var(--cream);
+  overflow-x: auto;
+}
+
+.code-kw {
+  color: var(--saffron);
+  font-weight: 600;
+}
+
+.code-type {
+  color: var(--gold);
+}
+
+.code-doc {
+  color: var(--muted);
+  font-style: italic;
+}
+
 /* ---------- Footer ---------- */
 footer {
   text-align: center;
