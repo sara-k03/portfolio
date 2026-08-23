@@ -64,13 +64,41 @@ body {
   margin: 10px 0 0;
 }
 
+/* ---------- Divider ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 260px;
+  margin: 28px auto 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.divider-line--right {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+.divider-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
 /* ---------- Nav tabs (homepage only) ---------- */
 .tabs {
   display: flex;
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin: 36px 0 8px;
+  margin: 24px 0 8px;
 }
 
 .tabs a {
