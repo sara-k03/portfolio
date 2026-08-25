@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kinetic Energy of Mechanical Systems — Sarayu Kondaveeti</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ]
+    });"></script>
+</head>
+<body>
+
+  <div class="page-wrap">
+
+    <a class="crumb" href="../byu-hummingbird.html">&larr; BYU Hummingbird</a>
+
+    <h1 class="page-title">Kinetic Energy of Mechanical Systems</h1>
+
+    <section class="project-detail">
+
+      <p><strong>Source:</strong> Hummingbird Manual, Chapter 2</p>
+
+      <figure class="figure-medium">
+        <img src="../kinetic-energy-imgs/Figure2-1.png" alt="Labeled diagram of the hummingbird helicopter showing masses m1, m2, m3, inertias J1, J2, J3, arm lengths l1, l2, lT, thrust forces fl and fr, and angles theta, phi, and psi">
+        <figcaption>A diagram of the hummingbird from the Hummingbird Manual (Figure 2-1)</figcaption>
+      </figure>
+
+      <figure class="figure-small">
+        <img src="../kinetic-energy-imgs/Figure2-2.png" alt="Diagram showing a vector p and its coordinates in two rotated 2D reference frames, F0 and F1, related by angle theta">
+        <figcaption>Figure 2-2: Rotation in 2D</figcaption>
+      </figure>
+
+      <h3>Rotation Between Reference Frames</h3>
+
+      <p>
+        \(F_0\) frame &rarr; \(\vec p = p_x^0\hat\imath^0 + p_y^0\hat\jmath^0 + p_z^0\hat k^0\), with basis \((\hat\imath^0, \hat\jmath^0, \hat k^0)\)<br>
+        \(F_1\) frame &rarr; \(\vec p = p_x^1\hat\imath^1 + p_y^1\hat\jmath^1 + p_z^1\hat k^1\), with basis \((\hat\imath^1, \hat\jmath^1, \hat k^1)\)
+      </p>
+
+      <p>\(\vec p\) is the vector representing rotation. Setting both \(\vec p\) expressions equal describes the rotation between both frames:</p>
+
+      $$p_x^1\hat\imath^1 + p_y^1\hat\jmath^1 + p_z^1\hat k^1 = p_x^0\hat\imath^0 + p_y^0\hat\jmath^0 + p_z^0\hat k^0$$
+
+      <p>Multiplying both sides by \(\hat\imath^0\), \(\hat\jmath^0\), and \(\hat k^0\) gives:</p>
+
+      $$
+      \vec p^{\,0} \triangleq \begin{pmatrix}p_x^0\\p_y^0\\p_z^0\end{pmatrix}
+      = \begin{pmatrix}
+      \hat\imath^0\cdot\hat\imath^1 & \hat\imath^0\cdot\hat\jmath^1 & \hat\imath^0\cdot\hat k^1\\
+      \hat\jmath^0\cdot\hat\imath^1 & \cdots & \cdots\\
+      \hat k^0\cdot\hat\imath^1 & \cdots & \hat k^0\cdot\hat k^1
+      \end{pmatrix}
+      \begin{pmatrix}p_x^1\\p_y^1\\p_z^1\end{pmatrix}
+      $$
+
+      <p>We can write this as \(\vec p^{\,0} = R_z(\Psi)\vec p^{\,1} = R_1^0(\Psi)\vec p^{\,1}\), where \(R_1^0\) represents the rotation from \(F_0\) to \(F_1\).</p>
+
+      $$
+      R_z(\Psi) \triangleq \begin{pmatrix}
+      \cos\Psi & -\sin\Psi & 0\\
+      \sin\Psi & \cos\Psi & 0\\
+      0 & 0 & 1
+      \end{pmatrix}
+      $$
+
+      <p>(where \(\Psi\) is the angle of rotation about the z-axis)</p>
+
+      <p>Similarly,</p>
+
+      $$
+      R_y(\Theta) \triangleq \begin{pmatrix}
+      \cos\Theta & 0 & \sin\Theta\\
+      0 & 1 & 0\\
+      -\sin\Theta & 0 & \cos\Theta
+      \end{pmatrix}
+      $$
+
+      $$
+      R_x(\Phi) \triangleq \begin{pmatrix}
+      1 & 0 & 0\\
+      0 & \cos\Phi & -\sin\Phi\\
+      0 & \sin\Phi & \cos\Phi
+      \end{pmatrix}
+      $$
+
+      <p>The \(R_*\) matrices are orthonormal matrices with the following properties:</p>
+      <ul>
+        <li>\((R_a^b)^{-1} = (R_a^b)^T = R_b^a\)</li>
+        <li>\(R_b^c R_a^b = R_a^c\)</li>
+        <li>\(\det(R_a^b) = 1\)</li>
+      </ul>
+
+      <h3>Kinetic Energy</h3>
+
+      <p>
+        \(\Psi \to\) yaw angle &nbsp;&nbsp; \(\Theta \to\) pitch angle &nbsp;&nbsp; \(\Phi \to\) roll angle
+      </p>
+
+      <p>
+        \(\vec q = \begin{pmatrix}\Phi\\\Theta\\\Psi\end{pmatrix}\) gives us the hummingbird configuration
+      </p>
+
+      <ul>
+        <li>Position of center of mass of \(m_3\) is a function of the yaw angle \(\Psi\).</li>
+        <li>Position of center of mass of \(m_2\) is a function of both the yaw angle \(\Psi\) and the pitch angle \(\Theta\).</li>
+        <li>Position of center of mass of \(m_1\) is a function of \(\Psi\), \(\Theta\), and \(\Phi\).</li>
+      </ul>
+
+      $$
+      K = \sum_{i=1}^{3}\left(\frac{1}{2}m_i\vec v_i^{\,T}\vec v_i + \frac{1}{2}\vec\omega_i^{\,T}R_iJ_iR_i^T\vec\omega_i\right)
+      $$
+
+      <p>where \(\vec v_i\), \(\vec\omega_i\), and \(R_i\) are functions of \(\vec q\) and \(\dot{\vec q}\).</p>
+
+      $$
+      K = \sum_{i=1}^{3}\left(\frac{1}{2}m_i\dot{\vec q}^{\,T}V_i^TV_i\dot{\vec q} + \frac{1}{2}\dot{\vec q}^{\,T}W_i^TR_iJ_iR_i^TW_i\dot{\vec q}\right)
+      $$
+
+      $$
+      = \frac{1}{2}\dot{\vec q}^{\,T}\left(\sum_{i=1}^{3}m_iV_i^TV_i + W_i^TR_iJ_iR_i^TW_i\right)\dot{\vec q}
+      $$
+
+      $$
+      \triangleq \frac{1}{2}\dot{\vec q}^{\,T}M(\vec q)\dot{\vec q}
+      $$
+
+      <p>where</p>
+
+      $$
+      M(\vec q) = \sum_{i=1}^{3}m_iV_i^T(\vec q)V_i(\vec q) + W_i^T(\vec q)R_iJ_iR_i^TW_i(\vec q)
+      $$
+
+      <p>&rarr; Main goal of this chapter is to derive symbolic expressions for this matrix.</p>
+
+      <p><strong>From external source:</strong> The mass matrix represents directional inertia, showing that accelerating a system in one direction may feel &ldquo;heavier&rdquo; than accelerating it in another.</p>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

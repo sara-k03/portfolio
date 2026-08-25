@@ -562,6 +562,53 @@ body {
   margin: 0;
 }
 
+/* ---------- Figures ---------- */
+.project-detail figure {
+  margin: 0 0 28px;
+  padding: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  text-align: center;
+}
+
+.project-detail figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  background: var(--cream);
+}
+
+.project-detail figure.figure-small {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-detail figure.figure-medium {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-detail figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* ---------- Math (KaTeX) ---------- */
+.project-detail .katex-display {
+  margin: 4px 0 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 14px 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+}
+
 /* ---------- Code blocks ---------- */
 .code-block {
   display: flex;
