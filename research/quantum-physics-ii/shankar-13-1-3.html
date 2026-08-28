@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shankar 13.1.3 — Sarayu Kondaveeti</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ]
+    });"></script>
+</head>
+<body>
+
+  <div class="page-wrap">
+
+    <a class="crumb" href="../quantum-physics-ii.html">&larr; Quantum Physics II</a>
+
+    <h1 class="page-title">Shankar Exercise 13.1.3</h1>
+
+    <section class="project-detail">
+
+      <div class="lesson-note"><strong>Problem:</strong> Starting from the recursion relation, obtain \(\psi_{210}\).</div>
+
+      $$\psi_{210} = \left(\frac{1}{32\pi a_0^3}\right)^{1/2} \frac{r}{a_0} e^{-r/2a_0} \cos\theta$$
+
+      <p>Recursion relation:</p>
+
+      $$\frac{C_{k+1}}{C_k} = \frac{-e^2\lambda + 2(k+\ell+1)}{(k+\ell+2)(k+\ell+1) - \ell(\ell+1)}$$
+
+      <p>\(\psi_{210}\) means \(n=2\), \(\ell=1\), and \(m=0\). The problem says to use the recursion relation.</p>
+
+      <p>Equation 13.1.15 says \(n = k + \ell + 1\). Since \(n=2\) and \(\ell=1\), so \(k=0\). Therefore, the series terminates at \(k=0\).</p>
+
+      $$v_{E\ell} = \rho^{\ell+1} \sum_{k=0}^{\infty} c_k \rho^k$$
+
+      $$v = C_0 \rho^2$$
+
+      <p>\(v\) is not the full radial wavefunction.</p>
+
+      <p>Eq (13.1.7):</p>
+      $$U_{E\ell} = e^{-\rho} V_{E\ell}$$
+
+      <p>Eq (13.1.3):</p>
+      $$\psi_{n\ell m}(r,\theta,\phi) = R_{E\ell}(r)\, Y_\ell^m(\theta,\phi) = \frac{U_{E\ell}}{r} Y_\ell^m(\theta,\phi)$$
+
+      <p>So</p>
+
+      $$R_{E\ell} = \frac{U_{E\ell}}{r} = \frac{1}{r} \cdot e^{-\rho} V_{E\ell}$$
+
+      $$R_{21} = \frac{e^{-\rho}}{r} \cdot C_0 \rho^2$$
+
+      <p>The \(e\) term in the \(\psi_{210}\) form given in the textbook does not contain a \(\rho\), implying that we have to find \(\rho\).</p>
+
+      <p>Eq (13.1.6):</p>
+      $$\rho = r\sqrt{\frac{2mW}{\hbar^2}}$$
+
+      <p>From question 13.1.1, we found:</p>
+
+      $$W = \frac{me^4}{2\hbar^2(k+\ell+1)^2} = \frac{me^4}{2\hbar^2 n^2}$$
+
+      <p>So,</p>
+
+      $$\rho = r\sqrt{\frac{2m}{\hbar^2} \cdot \frac{me^4}{2\hbar^2 n^2}} = r\sqrt{\frac{m^2 e^4}{\hbar^4 n^2}}$$
+
+      $$\rho = \frac{me^2 r}{\hbar^2 n}$$
+
+      <p>\(\psi_{210}\) has the Bohr radius \(a_0 = \dfrac{\hbar^2}{me^2}\) in it, so</p>
+
+      $$\rho = \frac{r}{a_0 n} = \frac{r}{2a_0}$$
+
+      <p>So,</p>
+
+      $$
+      R_{21} = \frac{C_0}{r}\left(\frac{r}{2a_0}\right)^2 e^{-r/2a_0}
+      = \frac{C_0}{4a_0} \cdot \frac{r}{a_0}\, e^{-r/2a_0}
+      $$
+
+      <p>To achieve the form in the textbook, we can treat \(\frac{C_0}{4a_0}\) as a constant that gets absorbed into the normalization constant later.</p>
+
+      $$R_{21} \propto \frac{r}{a_0} e^{-r/2a_0}$$
+
+      <p>The spherical harmonic associated with \(m=0\) and \(\ell=1\) is</p>
+
+      $$Y_1^0 = \sqrt{\frac{3}{4\pi}} \cos\theta$$
+
+      <p>\(\sqrt{\dfrac{3}{4\pi}}\) is also just a constant, so \(Y_1^0 \propto \cos\theta\).</p>
+
+      <p>Now we know:</p>
+
+      $$\psi_{210} \propto \frac{r}{a_0} e^{-r/2a_0} \cos\theta$$
+
+      <p>Since \(\psi_{210}\) still needs to get normalized:</p>
+
+      $$\psi_{210} = A\, \frac{r}{a_0} e^{-r/2a_0} \cos\theta$$
+
+      <p>Solving for the normalization constant yields \(A = \left(\frac{1}{32\pi a_0^3}\right)^{1/2}\), which gives us the full form of the wavefunction given in the textbook.</p>
+
+      $$\psi_{210} = \left(\frac{1}{32\pi a_0^3}\right)^{1/2} \frac{r}{a_0} e^{-r/2a_0} \cos\theta$$
+
+    </section>
+
+  </div>
+
+</body>
+</html>

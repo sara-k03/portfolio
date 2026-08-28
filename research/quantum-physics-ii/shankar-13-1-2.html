@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shankar 13.1.2 — Sarayu Kondaveeti</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ]
+    });"></script>
+</head>
+<body>
+
+  <div class="page-wrap">
+
+    <a class="crumb" href="../quantum-physics-ii.html">&larr; Quantum Physics II</a>
+
+    <h1 class="page-title">Shankar Exercise 13.1.2</h1>
+
+    <section class="project-detail">
+
+      <div class="lesson-note"><strong>Problem:</strong> Derive the degeneracy formula, Eq. (13.1.18).</div>
+
+      $$\sum_{k=0}^{n-1} (2\ell + 1) = n^2 \tag{13.1.18}$$
+
+      <p>For each \(n\), there are \(\ell\) values starting at 0 up to \(\ell = n - 1\).</p>
+
+      <p>For each \(\ell\), there are \(m\) values from \(-\ell\) to \(+\ell\) (including 0). This gives us \(2\ell + 1\) possible \(m\) values.</p>
+
+      <p>That gives us \(\displaystyle\sum_{k=0}^{n-1} (2\ell + 1)\).</p>
+
+      <p>Now we need to show that this equals \(n^2\).</p>
+
+      $$
+      \begin{aligned}
+      \sum_{k=0}^{n-1} (2\ell + 1) &= \sum_{\ell=0}^{n-1}2\ell + \sum_{\ell=0}^{n-1}1 \\
+      &= 2 \cdot \frac{(n-1)n}{2} + n \\
+      &= n^2 - n + n \\
+      &= n^2
+      \end{aligned}
+      $$
+
+    </section>
+
+  </div>
+
+</body>
+</html>
