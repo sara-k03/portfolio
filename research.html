@@ -3,32 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research &amp; Technical — Sarayu Kondaveeti</title>
+  <title>Technical — Sarayu Kondaveeti</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="page-wrap">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-mount"></aside>
+    <script src="sidebar.js" data-root=""></script>
 
-    <a class="crumb" href="index.html">&larr; Home</a>
+    <main class="main-content">
+      <div class="page-wrap">
 
-    <h1 class="page-title">Research &amp; Technical</h1>
+        <a class="crumb" href="index.html">&larr; Home</a>
 
-    <div class="project-grid">
-      <a class="project-tile" href="research/leetcode-diaries.html" data-updated="2026-08-22">
-        <h3>LeetCode Diaries</h3>
-        <span class="tile-date">Updated August 2026</span>
-        <p>As I do Leetcode problems (and other similar problems) for new grad interview preparation, I will document my solutions here. The questions are going to be grouped by "pattern" to help me better recognize the patterns in Leetcode-style questions.</p>
-      </a>
+        <h1 class="page-title">Technical</h1>
 
-      <a class="project-tile" href="research/disordered-metamaterials.html" data-updated="2026-07-11">
-        <h3>Disordered Metamaterials</h3>
-        <span class="tile-date">Updated July 2026</span>
-        <p>I have been working with Dr. Karen Daniels at the NC State Department of Physics since August 2024 (fall of my sophomore year). This project involves the fabrication and study of open lattice structures. More details will be coming to this page soon, but for now I have attached the research posters I have presented for this project (one from May 2025 and the other from May 2026).</p>
-      </a>
+        <div class="project-grid">
+          <a class="project-tile" href="research/leetcode-diaries.html" data-updated="2026-08-22">
+            <h3>LeetCode Diaries</h3>
+            <span class="tile-date">Updated August 2026</span>
+            <p>As I do Leetcode problems (and other similar problems) for new grad interview preparation, I will document my solutions here. The questions are going to be grouped by "pattern" to help me better recognize the patterns in Leetcode-style questions.</p>
+          </a>
 
-    </div>
+          <a class="project-tile" href="research/disordered-metamaterials.html" data-updated="2026-07-11">
+            <h3>Disordered Metamaterials</h3>
+            <span class="tile-date">Updated July 2026</span>
+            <p>I have been working with Dr. Karen Daniels at the NC State Department of Physics since August 2024 (fall of my sophomore year). This project involves the fabrication and study of open lattice structures. More details will be coming to this page soon, but for now I have attached the research posters I have presented for this project (one from May 2025 and the other from May 2026).</p>
+          </a>
 
+        </div>
+
+      </div>
+    </main>
   </div>
 
   <script src="tile-sort.js"></script>

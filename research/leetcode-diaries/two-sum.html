@@ -8,64 +8,71 @@
 </head>
 <body>
 
-  <div class="page-wrap">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-mount"></aside>
+    <script src="../../sidebar.js" data-root="../../"></script>
 
-    <a class="crumb" href="../leetcode-diaries.html">&larr; LeetCode Diaries</a>
+    <main class="main-content">
+      <div class="page-wrap">
 
-    <h1 class="page-title">Two Sum</h1>
+        <a class="crumb" href="../leetcode-diaries.html">&larr; LeetCode Diaries</a>
 
-    <section class="project-detail">
+        <h1 class="page-title">Two Sum</h1>
 
-      <div class="code-block">
-        <pre class="code-line-numbers" aria-hidden="true">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17</pre>
-        <pre class="code-content"><code><span class="code-kw">class</span> <span class="code-type">Solution</span>(<span class="code-type">object</span>):
-    <span class="code-kw">def</span> twoSum(<span class="code-type">self</span>, nums, target):
+        <section class="project-detail">
 
-        <span class="code-doc"># dictionary of value (key) and index (value)</span>
-        seen = {}
+          <div class="code-block">
+            <pre class="code-line-numbers" aria-hidden="true">1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    11
+    12
+    13
+    14
+    15
+    16
+    17</pre>
+            <pre class="code-content"><code><span class="code-kw">class</span> <span class="code-type">Solution</span>(<span class="code-type">object</span>):
+        <span class="code-kw">def</span> twoSum(<span class="code-type">self</span>, nums, target):
 
-        <span class="code-doc"># enumerate returns two values: the index and the value, eliminates need for a counter</span>
-        <span class="code-kw">for</span> i, val <span class="code-kw">in</span> enumerate(nums):
-            <span class="code-doc"># required number to hit target</span>
-            required = target - val
+            <span class="code-doc"># dictionary of value (key) and index (value)</span>
+            seen = {}
 
-            <span class="code-doc"># have we already seen this?</span>
-            <span class="code-kw">if</span> required <span class="code-kw">in</span> seen.keys():
-                <span class="code-kw">return</span> [seen[required], i]
+            <span class="code-doc"># enumerate returns two values: the index and the value, eliminates need for a counter</span>
+            <span class="code-kw">for</span> i, val <span class="code-kw">in</span> enumerate(nums):
+                <span class="code-doc"># required number to hit target</span>
+                required = target - val
 
-            <span class="code-doc"># adding to seen dictionary</span>
-            seen[val] = i</code></pre>
+                <span class="code-doc"># have we already seen this?</span>
+                <span class="code-kw">if</span> required <span class="code-kw">in</span> seen.keys():
+                    <span class="code-kw">return</span> [seen[required], i]
+
+                <span class="code-doc"># adding to seen dictionary</span>
+                seen[val] = i</code></pre>
+          </div>
+
+          <p><strong>Source:</strong> <a href="https://leetcode.com/problems/two-sum/?envType=problem-list-v2&amp;envId=2yvx2ha6" target="_blank" rel="noopener noreferrer">LeetCode</a></p>
+          <p><strong>Pattern:</strong> Seen Elements</p>
+          <p><strong>Data Structure:</strong> Hash Map</p>
+          <p><strong>Time:</strong> O(n)</p>
+          <p><strong>Space:</strong> O(n)</p>
+          <p><strong>Comments:</strong></p>
+          <ul>
+            <li>The time complexity is O(n) because there is only one for loop and only O(1) operations are performed inside the for loop.</li>
+            <li>The space complexity is O(n) because <em>seen</em> grows by one element per iteration.</li>
+          </ul>
+
+        </section>
+
       </div>
-
-      <p><strong>Source:</strong> <a href="https://leetcode.com/problems/two-sum/?envType=problem-list-v2&amp;envId=2yvx2ha6" target="_blank" rel="noopener noreferrer">LeetCode</a></p>
-      <p><strong>Pattern:</strong> Seen Elements</p>
-      <p><strong>Data Structure:</strong> Hash Map</p>
-      <p><strong>Time:</strong> O(n)</p>
-      <p><strong>Space:</strong> O(n)</p>
-      <p><strong>Comments:</strong></p>
-      <ul>
-        <li>The time complexity is O(n) because there is only one for loop and only O(1) operations are performed inside the for loop.</li>
-        <li>The space complexity is O(n) because <em>seen</em> grows by one element per iteration.</li>
-      </ul>
-
-    </section>
-
+    </main>
   </div>
 
 </body>

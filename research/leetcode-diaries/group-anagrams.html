@@ -8,52 +8,59 @@
 </head>
 <body>
 
-  <div class="page-wrap">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-mount"></aside>
+    <script src="../../sidebar.js" data-root="../../"></script>
 
-    <a class="crumb" href="../leetcode-diaries.html">&larr; LeetCode Diaries</a>
+    <main class="main-content">
+      <div class="page-wrap">
 
-    <h1 class="page-title">Group Anagrams</h1>
+        <a class="crumb" href="../leetcode-diaries.html">&larr; LeetCode Diaries</a>
 
-    <section class="project-detail">
+        <h1 class="page-title">Group Anagrams</h1>
 
-      <div class="code-block">
-        <pre class="code-line-numbers" aria-hidden="true">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11</pre>
-        <pre class="code-content"><code><span class="code-kw">from</span> collections <span class="code-kw">import</span> <span class="code-type">defaultdict</span>
+        <section class="project-detail">
 
-<span class="code-kw">class</span> <span class="code-type">Solution</span>(<span class="code-type">object</span>):
-    <span class="code-kw">def</span> groupAnagrams(<span class="code-type">self</span>, strs):
-        <span class="code-doc"># dictionary where default value is an empty list</span>
-        anagrams = <span class="code-type">defaultdict</span>(<span class="code-type">list</span>)
-        <span class="code-doc"># loop, have to cast sorted s to str because it returns a list by default</span>
-        <span class="code-kw">for</span> s <span class="code-kw">in</span> strs:
-            anagrams[<span class="code-type">str</span>(sorted(s))].append(s)
-        <span class="code-doc"># have to cast return value to a list, otherwise it returns a different sort of object</span>
-        <span class="code-kw">return</span> <span class="code-type">list</span>(anagrams.values())</code></pre>
+          <div class="code-block">
+            <pre class="code-line-numbers" aria-hidden="true">1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    11</pre>
+            <pre class="code-content"><code><span class="code-kw">from</span> collections <span class="code-kw">import</span> <span class="code-type">defaultdict</span>
+
+    <span class="code-kw">class</span> <span class="code-type">Solution</span>(<span class="code-type">object</span>):
+        <span class="code-kw">def</span> groupAnagrams(<span class="code-type">self</span>, strs):
+            <span class="code-doc"># dictionary where default value is an empty list</span>
+            anagrams = <span class="code-type">defaultdict</span>(<span class="code-type">list</span>)
+            <span class="code-doc"># loop, have to cast sorted s to str because it returns a list by default</span>
+            <span class="code-kw">for</span> s <span class="code-kw">in</span> strs:
+                anagrams[<span class="code-type">str</span>(sorted(s))].append(s)
+            <span class="code-doc"># have to cast return value to a list, otherwise it returns a different sort of object</span>
+            <span class="code-kw">return</span> <span class="code-type">list</span>(anagrams.values())</code></pre>
+          </div>
+
+          <p><strong>Source:</strong> <a href="https://leetcode.com/problems/group-anagrams/description/?envType=problem-list-v2&amp;envId=2yvx2ha6" target="_blank" rel="noopener noreferrer">LeetCode</a></p>
+          <p><strong>Pattern:</strong> Frequency Counting</p>
+          <p><strong>Data Structure:</strong> Hash Map</p>
+          <p><strong>Time:</strong> O(n * k log k), where <em>n</em> is number of strings and <em>k</em> is average string length</p>
+          <p><strong>Space:</strong> O(nk)</p>
+          <p><strong>Comments:</strong></p>
+          <ul>
+            <li>The time complexity is O(n * k log k) because the loop runs <em>n</em> times and a sorting function is performed in each iteration which is k log k.</li>
+            <li>The space complexity is O(nk) because the dictionary/hash map stores <em>n</em> strings that each have an average of <em>k</em> characters.</li>
+          </ul>
+
+        </section>
+
       </div>
-
-      <p><strong>Source:</strong> <a href="https://leetcode.com/problems/group-anagrams/description/?envType=problem-list-v2&amp;envId=2yvx2ha6" target="_blank" rel="noopener noreferrer">LeetCode</a></p>
-      <p><strong>Pattern:</strong> Frequency Counting</p>
-      <p><strong>Data Structure:</strong> Hash Map</p>
-      <p><strong>Time:</strong> O(n * k log k), where <em>n</em> is number of strings and <em>k</em> is average string length</p>
-      <p><strong>Space:</strong> O(nk)</p>
-      <p><strong>Comments:</strong></p>
-      <ul>
-        <li>The time complexity is O(n * k log k) because the loop runs <em>n</em> times and a sorting function is performed in each iteration which is k log k.</li>
-        <li>The space complexity is O(nk) because the dictionary/hash map stores <em>n</em> strings that each have an average of <em>k</em> characters.</li>
-      </ul>
-
-    </section>
-
+    </main>
   </div>
 
 </body>
