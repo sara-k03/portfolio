@@ -29,11 +29,32 @@
     }
   ];
 
+  var header = document.createElement('div');
+  header.className = 'sidebar-header';
+
   var brand = document.createElement('a');
   brand.className = 'sidebar-brand';
   brand.href = root + 'index.html';
   brand.textContent = 'Portfolio';
-  mount.appendChild(brand);
+  header.appendChild(brand);
+
+  var mobileToggle = document.createElement('button');
+  mobileToggle.type = 'button';
+  mobileToggle.className = 'sidebar-toggle-mobile';
+  mobileToggle.setAttribute('aria-label', 'Toggle navigation menu');
+  mobileToggle.setAttribute('aria-expanded', 'false');
+  mobileToggle.textContent = '☰';
+  mobileToggle.addEventListener('click', function () {
+    var open = mount.classList.toggle('open');
+    mobileToggle.setAttribute('aria-expanded', String(open));
+    mobileToggle.textContent = open ? '✕' : '☰';
+  });
+  header.appendChild(mobileToggle);
+
+  mount.appendChild(header);
+
+  var panel = document.createElement('div');
+  panel.className = 'sidebar-panel';
 
   var nav = document.createElement('nav');
   nav.className = 'sidebar-nav';
@@ -100,7 +121,7 @@
   });
 
   nav.appendChild(list);
-  mount.appendChild(nav);
+  panel.appendChild(nav);
 
   var footer = document.createElement('div');
   footer.className = 'sidebar-footer';
@@ -117,7 +138,9 @@
 
   footer.appendChild(linkedin);
   footer.appendChild(email);
-  mount.appendChild(footer);
+  panel.appendChild(footer);
+
+  mount.appendChild(panel);
 
   // Re-order each section's children by the data-updated date on its hub
   // page's own tiles (same source tile-sort.js reads on the hub pages

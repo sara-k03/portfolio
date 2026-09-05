@@ -60,6 +60,13 @@ body {
   overflow-y: auto;
 }
 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .sidebar-brand {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
@@ -67,6 +74,29 @@ body {
   letter-spacing: 0.02em;
   color: var(--saffron);
   text-decoration: none;
+}
+
+.sidebar-toggle-mobile {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  color: var(--cream);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.sidebar-toggle-mobile:hover,
+.sidebar-toggle-mobile[aria-expanded="true"] {
+  color: var(--saffron);
+  border-color: var(--gold);
 }
 
 .sidebar-nav {
@@ -176,15 +206,40 @@ body {
   .app-shell { flex-direction: column; }
 
   .sidebar {
-    position: static;
+    position: sticky;
+    top: 0;
+    z-index: 30;
     height: auto;
     width: 100%;
     flex: 0 0 auto;
+    padding: 16px 20px;
     border-right: none;
     border-bottom: 1px solid var(--card-border);
+    background: var(--background);
+    overflow: visible;
   }
 
-  .sidebar-nav { margin-top: 20px; }
+  .sidebar-toggle-mobile { display: inline-flex; }
+
+  .sidebar-panel {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    max-height: calc(100vh - 66px);
+    overflow-y: auto;
+    background: var(--background);
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+    padding: 4px 20px 20px;
+  }
+
+  .sidebar.open .sidebar-panel { display: block; }
+
+  .sidebar-nav { margin-top: 14px; }
+
+  .sidebar-footer { margin-top: 18px; padding-top: 14px; }
 }
 
 /* ---------- Header / Name ---------- */
