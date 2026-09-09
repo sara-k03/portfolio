@@ -552,6 +552,18 @@ body {
   margin: 0 0 16px;
 }
 
+.project-detail h2 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--saffron);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 40px 0 14px;
+}
+
+.project-detail h2:first-child {
+  margin-top: 0;
+}
+
 .project-detail h3 {
   font-family: 'Cormorant Garamond', serif;
   color: var(--saffron);
@@ -564,13 +576,15 @@ body {
   margin-top: 0;
 }
 
-.project-detail ul {
-  margin: 0;
+.project-detail ul,
+.project-detail ol {
+  margin: 0 0 16px;
   padding-left: 20px;
   color: var(--cream);
 }
 
-.project-detail ul li { margin-bottom: 6px; }
+.project-detail ul li,
+.project-detail ol li { margin-bottom: 6px; }
 
 .project-detail hr {
   border: none;
@@ -591,11 +605,13 @@ body {
 }
 
 .project-detail h4 {
-  font-family: 'Cormorant Garamond', serif;
-  color: var(--saffron);
+  font-family: 'Poppins', sans-serif;
+  color: var(--cream);
   font-weight: 600;
   font-size: 1rem;
-  margin: 20px 0 8px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin: 24px 0 8px;
 }
 
 /* ---------- Lesson tables ---------- */
@@ -758,6 +774,13 @@ body {
   height: auto;
   border-radius: 4px;
   background: var(--cream);
+}
+
+.project-detail figure svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .project-detail figure.figure-small {
