@@ -12,10 +12,10 @@
   var NAV = [
     {
       label: 'Technical',
-      href: 'research.html',
+      href: 'technical.html',
       children: [
-        { label: 'LeetCode Diaries', href: 'research/leetcode-diaries.html' },
-        { label: 'Disordered Metamaterials', href: 'research/disordered-metamaterials.html' }
+        { label: 'LeetCode Diaries', href: 'technical/leetcode-diaries.html' },
+        { label: 'Disordered Metamaterials', href: 'technical/disordered-metamaterials.html' }
       ]
     },
     {
