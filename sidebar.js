@@ -23,9 +23,13 @@
       href: 'personal.html',
       children: [
         { label: 'Carnatic Music', href: 'personal/carnatic-music.html' },
-        { label: 'Sanskrit', href: 'personal/sanskrit.html' },
-        { label: 'Writing', href: 'writing.html' }
+        { label: 'Sanskrit', href: 'personal/sanskrit.html' }
       ]
+    },
+    {
+      label: 'Writing',
+      href: 'writing.html',
+      children: []
     }
   ];
 
@@ -96,24 +100,26 @@
     item._liByHref = liByHref;
     item._childList = childList;
 
-    var toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'sidebar-toggle';
-    toggle.setAttribute('aria-label', 'Toggle ' + item.label + ' section');
-    toggle.textContent = '›';
-    row.appendChild(toggle);
+    if (item.children.length) {
+      var toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'sidebar-toggle';
+      toggle.setAttribute('aria-label', 'Toggle ' + item.label + ' section');
+      toggle.textContent = '›';
+      row.appendChild(toggle);
 
-    var expanded = childActive;
-    function setExpanded(val) {
-      expanded = val;
-      childList.classList.toggle('expanded', expanded);
-      toggle.setAttribute('aria-expanded', String(expanded));
+      var expanded = childActive;
+      function setExpanded(val) {
+        expanded = val;
+        childList.classList.toggle('expanded', expanded);
+        toggle.setAttribute('aria-expanded', String(expanded));
+      }
+      setExpanded(expanded);
+
+      toggle.addEventListener('click', function () {
+        setExpanded(!expanded);
+      });
     }
-    setExpanded(expanded);
-
-    toggle.addEventListener('click', function () {
-      setExpanded(!expanded);
-    });
 
     li.appendChild(row);
     li.appendChild(childList);
