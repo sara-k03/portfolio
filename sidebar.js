@@ -9,27 +9,19 @@
     return path.endsWith('/' + href);
   }
 
+  function isExternal(href) {
+    return /^https?:\/\//i.test(href);
+  }
+
+  // Technical and Personal derive their children at runtime from the
+  // .project-tile elements on their own hub pages (see the fetch loop
+  // below), so adding/renaming/removing a tile there is enough — nothing
+  // here needs to be kept in sync by hand. Writing stays a plain link with
+  // no dropdown.
   var NAV = [
-    {
-      label: 'Technical',
-      href: 'technical.html',
-      children: [
-        { label: 'LeetCode Diaries', href: 'technical/leetcode-diaries.html' },
-        { label: 'Disordered Metamaterials', href: 'technical/disordered-metamaterials.html' }
-      ]
-    },
-    {
-      label: 'Personal',
-      href: 'personal.html',
-      children: [
-        { label: 'Sanskrit', href: 'personal/sanskrit.html' }
-      ]
-    },
-    {
-      label: 'Writing',
-      href: 'writing.html',
-      children: []
-    }
+    { label: 'Technical', href: 'technical.html', children: [], dynamicChildren: true },
+    { label: 'Personal', href: 'personal.html', children: [], dynamicChildren: true },
+    { label: 'Writing', href: 'writing.html', children: [], dynamicChildren: false }
   ];
 
   var header = document.createElement('div');
@@ -65,9 +57,57 @@
 
   var list = document.createElement('ul');
 
-  NAV.forEach(function (item) {
-    var childActive = item.children.some(function (child) { return isActive(child.href); });
+  // Builds/rebuilds the <li> entries inside an item's child list from its
+  // current item.children array.
+  function renderChildren(item) {
+    item._childList.innerHTML = '';
+    item._liByHref = {};
+    item.children.forEach(function (child) {
+      var cli = document.createElement('li');
+      var clink = document.createElement('a');
+      clink.className = 'sidebar-link';
+      if (isExternal(child.href)) {
+        clink.href = child.href;
+        clink.target = '_blank';
+        clink.rel = 'noopener noreferrer';
+      } else {
+        clink.href = root + child.href;
+        if (isActive(child.href)) clink.classList.add('active');
+      }
+      clink.textContent = child.label;
+      cli.appendChild(clink);
+      item._childList.appendChild(cli);
+      item._liByHref[child.href] = cli;
+    });
+  }
 
+  // Lazily adds the expand/collapse toggle for a section once it's known to
+  // have children (Writing starts with none until its tiles are fetched).
+  function ensureToggle(item) {
+    if (item._toggle) return;
+
+    var toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'sidebar-toggle';
+    toggle.setAttribute('aria-label', 'Toggle ' + item.label + ' section');
+    toggle.textContent = '›';
+    item._row.appendChild(toggle);
+    item._toggle = toggle;
+
+    var expanded = false;
+    item._setExpanded = function (val) {
+      expanded = val;
+      item._childList.classList.toggle('expanded', expanded);
+      toggle.setAttribute('aria-expanded', String(expanded));
+    };
+    item._setExpanded(item.children.some(function (child) { return isActive(child.href); }));
+
+    toggle.addEventListener('click', function () {
+      item._setExpanded(!expanded);
+    });
+  }
+
+  NAV.forEach(function (item) {
     var li = document.createElement('li');
     li.className = 'sidebar-section';
 
@@ -84,41 +124,8 @@
     var childList = document.createElement('ul');
     childList.className = 'sidebar-children';
 
-    var liByHref = {};
-    item.children.forEach(function (child) {
-      var cli = document.createElement('li');
-      var clink = document.createElement('a');
-      clink.className = 'sidebar-link';
-      clink.href = root + child.href;
-      clink.textContent = child.label;
-      if (isActive(child.href)) clink.classList.add('active');
-      cli.appendChild(clink);
-      childList.appendChild(cli);
-      liByHref[child.href] = cli;
-    });
-    item._liByHref = liByHref;
+    item._row = row;
     item._childList = childList;
-
-    if (item.children.length) {
-      var toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'sidebar-toggle';
-      toggle.setAttribute('aria-label', 'Toggle ' + item.label + ' section');
-      toggle.textContent = '›';
-      row.appendChild(toggle);
-
-      var expanded = childActive;
-      function setExpanded(val) {
-        expanded = val;
-        childList.classList.toggle('expanded', expanded);
-        toggle.setAttribute('aria-expanded', String(expanded));
-      }
-      setExpanded(expanded);
-
-      toggle.addEventListener('click', function () {
-        setExpanded(!expanded);
-      });
-    }
 
     li.appendChild(row);
     li.appendChild(childList);
@@ -147,32 +154,33 @@
 
   mount.appendChild(panel);
 
-  // Re-order each section's children by the data-updated date on its hub
-  // page's own tiles (same source tile-sort.js reads on the hub pages
-  // themselves), so the sidebar always matches without needing its own
-  // hardcoded copy of the dates. Silently keeps the declared order above
-  // if the fetch fails (e.g. viewed over file://).
+  // Pull each section's children straight from the .project-tile elements on
+  // its own hub page — label from the tile's <h3>, link from its href,
+  // ordered by data-updated (newest first). Silently leaves the section
+  // empty if the fetch fails (e.g. viewed over file://).
   NAV.forEach(function (item) {
+    if (!item.dynamicChildren) return;
+
     fetch(root + item.href)
       .then(function (res) { return res.text(); })
       .then(function (html) {
         var doc = new DOMParser().parseFromString(html, 'text/html');
-        var dates = {};
-        doc.querySelectorAll('.project-tile[data-updated]').forEach(function (tile) {
-          dates[tile.getAttribute('href')] = tile.getAttribute('data-updated');
-        });
-        item.children
-          .slice()
-          .sort(function (a, b) {
-            var da = dates[a.href] || '';
-            var db = dates[b.href] || '';
-            return db.localeCompare(da);
+        var tiles = Array.prototype.slice.call(doc.querySelectorAll('.project-tile[data-updated]'));
+
+        item.children = tiles
+          .map(function (tile) {
+            var h3 = tile.querySelector('h3');
+            return {
+              label: h3 ? h3.textContent.trim() : tile.getAttribute('href'),
+              href: tile.getAttribute('href'),
+              updated: tile.getAttribute('data-updated') || ''
+            };
           })
-          .forEach(function (child) {
-            var el = item._liByHref[child.href];
-            if (el) item._childList.appendChild(el);
-          });
+          .sort(function (a, b) { return b.updated.localeCompare(a.updated); });
+
+        renderChildren(item);
+        if (item.children.length) ensureToggle(item);
       })
-      .catch(function () { /* keep declared order */ });
+      .catch(function () { /* keep section empty */ });
   });
 })();
