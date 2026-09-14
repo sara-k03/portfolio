@@ -22,7 +22,6 @@
       label: 'Personal',
       href: 'personal.html',
       children: [
-        { label: 'Carnatic Music', href: 'personal/carnatic-music.html' },
         { label: 'Sanskrit', href: 'personal/sanskrit.html' }
       ]
     },
