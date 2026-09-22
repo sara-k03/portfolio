@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experimental Plans — Sarayu Kondaveeti</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-mount"></aside>
+    <script src="../../sidebar.js" data-root="../../"></script>
+
+    <main class="main-content">
+      <div class="page-wrap">
+
+        <a class="crumb" href="../measuring-viscosity.html">&larr; Measuring Viscosity</a>
+
+        <h1 class="page-title">Experimental Plans</h1>
+
+        <section class="project-detail">
+
+          <p>This covers reasoning behind possible experimental choices. This currently still needs to be approved.</p>
+
+          <h2>1. Deciding Viscous Mediums</h2>
+
+          <p>We have access to water and glycerol. We can create three different combinations of water and glycerol:</p>
+
+          <ul>
+            <li>Pure Water</li>
+            <li>25% Glycerol, 75% Water</li>
+            <li>50% Glycerol, 50% Water</li>
+          </ul>
+
+          <p class="lesson-note">Note: I was told higher percentages of glycerol would make measurement very difficult because of the extremely high viscosity. I can adjust these if I need to.</p>
+
+          <h2>2. Deciding Particle Size</h2>
+
+          <p>To provide some background, the camera frame rate for imaging will be at least 10Hz and could go up to 50Hz, meaning the interval between frames will be 0.02s to 0.1s. The localization is also diffraction limited, meaning that the accuracy of finding an object&rsquo;s position depends on the wavelength of light used.</p>
+
+          <p>We want the per-frame displacement of the particle to be larger than the localization error while also being small enough to link it from frame-to-frame.</p>
+
+          <p>To calculate the per-frame displacement, we can use $\langle r^2 \rangle = 4Dt$.</p>
+
+          <p>If we replace t with &Delta;t and square both sides of the equation, we get:</p>
+
+          <p>$$\Delta r = \sqrt{4D\Delta t}$$</p>
+
+          <p>D has to be determined separately for each particle because D depends on a, particle radius.</p>
+
+          <p>$$\eta = \dfrac{kT}{6\pi a D}$$</p>
+
+          <p>$$D = \dfrac{kT}{6\pi a \eta}$$</p>
+
+          <p>The table below contains the particle options that are available in the lab. I have also linked the Python script I used to determine the last two columns (the &Delta;r columns).</p>
+
+          <p><a href="https://github.com/sara-k03/viscosity-measurement" target="_blank" rel="noopener noreferrer">https://github.com/sara-k03/viscosity-measurement</a></p>
+
+          <p>The size 0.780&mu;m particles have the &Delta;r values that are at the median, so it is most likely to have a per-frame displacement that is above the localization error and small enough to track across images. It is also fluorescent rather than iron, which is an advantage because iron beads are more likely to sink in a more watery medium.</p>
+
+          <div class="table-wrap">
+            <table class="lesson-table">
+              <tr>
+                <th>Size (&micro;m or microns)</th>
+                <th>Material</th>
+                <th>&Delta;r in Water</th>
+                <th>&Delta;r in Glycerol<br>(D = 1.025 &times; 10<sup>-9</sup> m&sup2;/s at 25 &deg;C)</th>
+              </tr>
+              <tr>
+                <td>0.024</td>
+                <td>Iron</td>
+                <td>D = 20.45 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 2.86 &micro;m<br>dr @ 50 Hz (dt=20 ms): 1.279 &micro;m</td>
+                <td>D = 0.01948 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.08828 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.03948 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.040</td>
+                <td>Fluorescent</td>
+                <td>D = 12.27 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 2.215 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.9907 &micro;m</td>
+                <td>D = 0.01169 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.06838 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.03058 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.130</td>
+                <td>Fluorescent</td>
+                <td>D = 3.775 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 1.229 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.5495 &micro;m</td>
+                <td>D = 0.003597 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.03793 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.01696 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.240</td>
+                <td>Iron</td>
+                <td>D = 2.045 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.9044 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.4045 &micro;m</td>
+                <td>D = 0.001948 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.02792 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.01249 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.520</td>
+                <td>Fluorescent</td>
+                <td>D = 0.9437 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.6144 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.2748 &micro;m</td>
+                <td>D = 0.0008993 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.01897 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.008482 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.780</td>
+                <td>Fluorescent</td>
+                <td>D = 0.6292 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.5017 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.2244 &micro;m</td>
+                <td>D = 0.0005995 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.01549 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.006925 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.860</td>
+                <td>Fluorescent</td>
+                <td>D = 0.5706 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.4778 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.2137 &micro;m</td>
+                <td>D = 0.0005438 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.01475 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.006595 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.880</td>
+                <td>Iron</td>
+                <td>D = 0.5577 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.4723 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.2112 &micro;m</td>
+                <td>D = 0.0005314 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.01458 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.00652 &micro;m</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Iron</td>
+                <td>D = 0.4907 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.4431 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.1981 &micro;m</td>
+                <td>D = 0.0004676 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.01368 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.006116 &micro;m</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Fluorescent</td>
+                <td>D = 0.1636 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.2558 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.1144 &micro;m</td>
+                <td>D = 0.0001559 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.007896 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.003531 &micro;m</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Iron</td>
+                <td>D = 0.04907 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.1401 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.06266 &micro;m</td>
+                <td>D = 4.676e-05 &micro;m&sup2;/s<br>dr @ 10 Hz (dt=100 ms): 0.004325 &micro;m<br>dr @ 50 Hz (dt=20 ms): 0.001934 &micro;m</td>
+              </tr>
+            </table>
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.querySelector(".project-detail"), {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+
+</body>
+</html>
