@@ -38,7 +38,7 @@
 
           <h2>2. Deciding Particle Size</h2>
 
-          <p>To provide some background, the camera frame rate for imaging will be at least 10Hz and could go up to 50Hz, meaning the interval between frames will be 0.02s to 0.1s. The localization is also diffraction limited, meaning that the accuracy of finding an object&rsquo;s position depends on the wavelength of light used.</p>
+          <p>To provide some background, the camera frame rate for imaging will be at least 10Hz and could go up to 50Hz, meaning the interval between frames will be 0.02s to 0.1s. The localization is also diffraction limited (the accuracy of finding an object&rsquo;s position depends on the wavelength of light used).</p>
 
           <p>We want the per-frame displacement of the particle to be larger than the localization error while also being small enough to link it from frame-to-frame.</p>
 
@@ -56,9 +56,7 @@
 
           <p>The table below contains the particle options that are available in the lab. I have also linked the Python script I used to determine the last two columns (the &Delta;r columns).</p>
 
-          <p><a href="https://github.com/sara-k03/viscosity-measurement" target="_blank" rel="noopener noreferrer">https://github.com/sara-k03/viscosity-measurement</a></p>
-
-          <p>The size 0.780&mu;m particles have the &Delta;r values that are at the median, so it is most likely to have a per-frame displacement that is above the localization error and small enough to track across images. It is also fluorescent rather than iron, which is an advantage because iron beads are more likely to sink in a more watery medium.</p>
+          <p><a href="https://github.com/sara-k03/viscosity-measurement/blob/master/determining-particle-size/per-frame.py" target="_blank" rel="noopener noreferrer">https://github.com/sara-k03/viscosity-measurement/blob/master/determining-particle-size/per-frame.py</a></p>
 
           <div class="table-wrap">
             <table class="lesson-table">
@@ -136,6 +134,117 @@
               </tr>
             </table>
           </div>
+
+          <p>The confocal microscope that we are going to use has a localization error of about 5-10 nm, which is about 0.005 to 0.01 microns. All the beads are larger than this, so all the beads are permissible to use.</p>
+
+          <p>Data that is more than 500 frames will be inconvenient to handle, so the next step would be to determine how much total displacement each of the beads would get in 500 frames.</p>
+
+          <p>Here is the script to determine the total displacement:</p>
+
+          <p><a href="https://github.com/sara-k03/viscosity-measurement/blob/master/determining-particle-size/total-displacement.py" target="_blank" rel="noopener noreferrer">https://github.com/sara-k03/viscosity-measurement/blob/master/determining-particle-size/total-displacement.py</a></p>
+
+          <div class="table-wrap">
+            <table class="lesson-table">
+              <tr>
+                <th>Size (&micro;m or microns)</th>
+                <th>Material</th>
+                <th>Total r in Water<br>(10Hz, 50s)</th>
+                <th>Total r in Glycerol<br>(10Hz, 50s)</th>
+                <th>Total r in Water<br>(50Hz, 10s)</th>
+                <th>Total r in Glycerol<br>(50Hz, 10s)</th>
+              </tr>
+              <tr>
+                <td>0.024</td>
+                <td>Iron</td>
+                <td>63.95 &micro;m</td>
+                <td>1.974 &micro;m</td>
+                <td>28.6 &micro;m</td>
+                <td>0.8828 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.040</td>
+                <td>Fluorescent</td>
+                <td>49.53 &micro;m</td>
+                <td>1.529 &micro;m</td>
+                <td>22.15 &micro;m</td>
+                <td>0.6838 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.130</td>
+                <td>Fluorescent</td>
+                <td>27.48 &micro;m</td>
+                <td>0.8481 &micro;m</td>
+                <td>12.29 &micro;m</td>
+                <td>0.3792 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.240</td>
+                <td>Iron</td>
+                <td>20.22 &micro;m</td>
+                <td>0.6243 &micro;m</td>
+                <td>9.045 &micro;m</td>
+                <td>0.2793 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.520</td>
+                <td>Fluorescent</td>
+                <td>13.74 &micro;m</td>
+                <td>0.4242 &micro;m</td>
+                <td>6.145 &micro;m</td>
+                <td>0.1897 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.780</td>
+                <td>Fluorescent</td>
+                <td>11.22 &micro;m</td>
+                <td>0.3464 &micro;m</td>
+                <td>5.018 &micro;m</td>
+                <td>0.1548 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.860</td>
+                <td>Fluorescent</td>
+                <td>10.68 &micro;m</td>
+                <td>0.3298 &micro;m</td>
+                <td>4.778 &micro;m</td>
+                <td>0.1475 &micro;m</td>
+              </tr>
+              <tr>
+                <td>0.880</td>
+                <td>Iron</td>
+                <td>10.56 &micro;m</td>
+                <td>0.326 &micro;m</td>
+                <td>4.723 &micro;m</td>
+                <td>0.1458 &micro;m</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Iron</td>
+                <td>9.908 &micro;m</td>
+                <td>0.3059 &micro;m</td>
+                <td>4.43 &micro;m</td>
+                <td>0.1368 &micro;m</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Fluorescent</td>
+                <td>5.72 &micro;m</td>
+                <td>0.1766 &micro;m</td>
+                <td>2.558 &micro;m</td>
+                <td>0.07896 &micro;m</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Iron</td>
+                <td>3.133 &micro;m</td>
+                <td>0.09671 &micro;m</td>
+                <td>1.401 &micro;m</td>
+                <td>0.04325 &micro;m</td>
+              </tr>
+            </table>
+          </div>
+
+          <p>I think the best choice would be to choose the fluorescent beads that are 0.130 &micro;m. These beads are several times the size of the localization error while giving us the greatest displacement.</p>
 
         </section>
 
