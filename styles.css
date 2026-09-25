@@ -114,11 +114,6 @@ body {
   margin-bottom: 2px;
 }
 
-.sidebar-row {
-  display: flex;
-  align-items: center;
-}
-
 .sidebar-link {
   display: block;
   flex: 1;
@@ -136,46 +131,6 @@ body {
 .sidebar-link.active {
   color: var(--saffron);
   background: rgba(217, 164, 65, 0.12);
-}
-
-.sidebar-toggle {
-  flex: 0 0 auto;
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 0.85rem;
-  padding: 6px 8px;
-  cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.sidebar-toggle:hover { color: var(--saffron); }
-
-.sidebar-toggle[aria-expanded="true"] {
-  color: var(--saffron);
-  transform: rotate(90deg);
-}
-
-.sidebar-children {
-  list-style: none;
-  margin: 2px 0 6px 12px;
-  padding-left: 10px;
-  border-left: 1px solid var(--card-border);
-  display: none;
-}
-
-.sidebar-children.expanded { display: block; }
-
-.sidebar-children .sidebar-link {
-  font-size: 0.85rem;
-  padding: 7px 10px;
-  color: var(--muted);
-}
-
-.sidebar-children .sidebar-link:hover,
-.sidebar-children .sidebar-link.active {
-  color: var(--saffron);
-  background: rgba(217, 164, 65, 0.1);
 }
 
 .sidebar-footer {
@@ -613,6 +568,70 @@ body {
 .lesson-note ul,
 .lesson-note li {
   color: inherit;
+}
+
+/* Text-heavy table (Journey to the East levels) */
+.levels-table th,
+.levels-table td {
+  text-align: left;
+  vertical-align: top;
+}
+
+.levels-table td p {
+  margin: 0 0 10px;
+}
+
+.levels-table td p:last-child {
+  margin-bottom: 0;
+}
+
+/* Devanagari letter with its IAST transliteration underneath */
+.ak {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.ak-dev {
+  font-size: 1.35rem;
+  color: var(--cream);
+}
+
+.ak-iast {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.ak-feature {
+  display: flex;
+  margin: 8px 0 16px;
+}
+
+.ak-feature .ak-dev {
+  font-size: 2.4rem;
+}
+
+.ak-combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ak-plus {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Inline boxed Devanagari, e.g. पञ्च in running text */
+.dev-chip {
+  display: inline-block;
+  padding: 0 6px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  background: var(--card-bg);
+  color: var(--cream);
+  line-height: 1.5;
 }
 
 .lesson-nav {

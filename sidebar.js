@@ -9,19 +9,17 @@
     return path.endsWith('/' + href);
   }
 
-  function isExternal(href) {
-    return /^https?:\/\//i.test(href);
-  }
-
-  // Technical and Personal derive their children at runtime from the
-  // .project-tile elements on their own hub pages (see the fetch loop
-  // below), so adding/renaming/removing a tile there is enough — nothing
-  // here needs to be kept in sync by hand. Writing stays a plain link with
-  // no dropdown.
+  // Flat list of projects, re-sorted at runtime by how recently each was
+  // updated (newest first). A project's date comes from the
+  // <meta name="updated"> tag on its own page, or — for pages like Writing
+  // that list posts — the newest .project-tile[data-updated] on it. The
+  // order below is only the fallback shown before/if the fetches fail
+  // (e.g. viewed over file://).
   var NAV = [
-    { label: 'Technical', href: 'technical.html', children: [], dynamicChildren: true },
-    { label: 'Personal', href: 'personal.html', children: [], dynamicChildren: true },
-    { label: 'Writing', href: 'writing.html', children: [], dynamicChildren: false }
+    { label: 'Journey to the East', href: 'journey-to-the-east.html' },
+    { label: 'Measuring Viscosity', href: 'measuring-viscosity.html' },
+    { label: 'Writing', href: 'writing.html' },
+    { label: 'Disordered Metamaterials', href: 'disordered-metamaterials.html' }
   ];
 
   var header = document.createElement('div');
@@ -57,79 +55,24 @@
 
   var list = document.createElement('ul');
 
-  // Builds/rebuilds the <li> entries inside an item's child list from its
-  // current item.children array.
-  function renderChildren(item) {
-    item._childList.innerHTML = '';
-    item._liByHref = {};
-    item.children.forEach(function (child) {
-      var cli = document.createElement('li');
-      var clink = document.createElement('a');
-      clink.className = 'sidebar-link';
-      if (isExternal(child.href)) {
-        clink.href = child.href;
-        clink.target = '_blank';
-        clink.rel = 'noopener noreferrer';
-      } else {
-        clink.href = root + child.href;
-        if (isActive(child.href)) clink.classList.add('active');
-      }
-      clink.textContent = child.label;
-      cli.appendChild(clink);
-      item._childList.appendChild(cli);
-      item._liByHref[child.href] = cli;
-    });
-  }
-
-  // Lazily adds the expand/collapse toggle for a section once it's known to
-  // have children (Writing starts with none until its tiles are fetched).
-  function ensureToggle(item) {
-    if (item._toggle) return;
-
-    var toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'sidebar-toggle';
-    toggle.setAttribute('aria-label', 'Toggle ' + item.label + ' section');
-    toggle.textContent = '›';
-    item._row.appendChild(toggle);
-    item._toggle = toggle;
-
-    var expanded = false;
-    item._setExpanded = function (val) {
-      expanded = val;
-      item._childList.classList.toggle('expanded', expanded);
-      toggle.setAttribute('aria-expanded', String(expanded));
-    };
-    item._setExpanded(item.children.some(function (child) { return isActive(child.href); }));
-
-    toggle.addEventListener('click', function () {
-      item._setExpanded(!expanded);
-    });
-  }
-
   NAV.forEach(function (item) {
     var li = document.createElement('li');
     li.className = 'sidebar-section';
-
-    var row = document.createElement('div');
-    row.className = 'sidebar-row';
 
     var link = document.createElement('a');
     link.className = 'sidebar-link';
     link.href = root + item.href;
     link.textContent = item.label;
-    if (isActive(item.href)) link.classList.add('active');
-    row.appendChild(link);
+    // Also highlight a project while on one of its subpages
+    // (e.g. measuring-viscosity/... under Measuring Viscosity).
+    var base = item.href.replace(/\.html$/, '');
+    if (isActive(item.href) || path.indexOf('/' + base + '/') !== -1) {
+      link.classList.add('active');
+    }
 
-    var childList = document.createElement('ul');
-    childList.className = 'sidebar-children';
-
-    item._row = row;
-    item._childList = childList;
-
-    li.appendChild(row);
-    li.appendChild(childList);
+    li.appendChild(link);
     list.appendChild(li);
+    item._li = li;
   });
 
   nav.appendChild(list);
@@ -154,33 +97,26 @@
 
   mount.appendChild(panel);
 
-  // Pull each section's children straight from the .project-tile elements on
-  // its own hub page — label from the tile's <h3>, link from its href,
-  // ordered by data-updated (newest first). Silently leaves the section
-  // empty if the fetch fails (e.g. viewed over file://).
-  NAV.forEach(function (item) {
-    if (!item.dynamicChildren) return;
+  function updatedDate(doc) {
+    var meta = doc.querySelector('meta[name="updated"]');
+    if (meta) return meta.getAttribute('content') || '';
+    return Array.prototype.slice.call(doc.querySelectorAll('.project-tile[data-updated]'))
+      .map(function (tile) { return tile.getAttribute('data-updated'); })
+      .sort()
+      .pop() || '';
+  }
 
-    fetch(root + item.href)
+  Promise.all(NAV.map(function (item) {
+    return fetch(root + item.href)
       .then(function (res) { return res.text(); })
       .then(function (html) {
-        var doc = new DOMParser().parseFromString(html, 'text/html');
-        var tiles = Array.prototype.slice.call(doc.querySelectorAll('.project-tile[data-updated]'));
-
-        item.children = tiles
-          .map(function (tile) {
-            var h3 = tile.querySelector('h3');
-            return {
-              label: h3 ? h3.textContent.trim() : tile.getAttribute('href'),
-              href: tile.getAttribute('href'),
-              updated: tile.getAttribute('data-updated') || ''
-            };
-          })
-          .sort(function (a, b) { return b.updated.localeCompare(a.updated); });
-
-        renderChildren(item);
-        if (item.children.length) ensureToggle(item);
-      })
-      .catch(function () { /* keep section empty */ });
-  });
+        item.updated = updatedDate(new DOMParser().parseFromString(html, 'text/html'));
+      });
+  }))
+    .then(function () {
+      NAV.slice()
+        .sort(function (a, b) { return b.updated.localeCompare(a.updated); })
+        .forEach(function (item) { list.appendChild(item._li); });
+    })
+    .catch(function () { /* keep fallback order */ });
 })();
