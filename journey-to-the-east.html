@@ -37,7 +37,7 @@
           <ol type="I">
             <li><a href="#concept">Concept</a></li>
             <li><a href="#lessons">Lessons</a></li>
-            <li><a href="#technical-details">Technical Details</a></li>
+            <li><a href="#code-structure">Code Structure</a></li>
             <li><a href="#bonus-content">Bonus Content</a></li>
           </ol>
 
@@ -130,9 +130,40 @@
 
           <p>Lesson 1: <a href="journey-to-the-east/lesson-1.html">Svarāḥ and Vyañjanāḥ</a></p>
 
-          <h2 id="technical-details">III. Technical Details</h2>
+          <h2 id="code-structure">III. Code Structure</h2>
 
-          <p>TBA</p>
+          <p>This game is currently front-end only, and player progress data is stored locally (it does not sync across devices or browsers). A proper backend will be designed after the frontend of the game has been fleshed out. The game is also a single-page React app built with Vite and deployed to GitHub Pages.</p>
+
+          <pre class="file-tree">├── index.html <span class="file-note">(Vite entry HTML; loads Noto Serif Devanagari)</span>
+├── vite.config.js <span class="file-note">(Sets the /journey-to-the-east/ base path for GitHub Pages)</span>
+├── .github/workflows/deploy.yml <span class="file-note">(Builds and deploys to GitHub Pages on every push to main)</span>
+├── background-images/ <span class="file-note">(Background photos plus the resized *-web.jpg copies the site uses)</span>
+├── fonts/jaini/ <span class="file-note">(Jaini font files and license)</span>
+└── src/
+    ├── main.jsx <span class="file-note">(Mounts &lt;App /&gt; and imports global styles)</span>
+    ├── App.jsx <span class="file-note">(Routes; uses HashRouter so deep links work on GitHub Pages)</span>
+    ├── levels.js <span class="file-note">(List of all 12 levels: name, description, route, question count, background)</span>
+    ├── progress.js <span class="file-note">(Reads/writes player progress in localStorage)</span>
+    ├── styles.css <span class="file-note">(All styling)</span>
+    ├── pages/
+    │   ├── Home.jsx <span class="file-note">(Level select screen with a progress bar per level)</span>
+    │   └── Republic.jsx <span class="file-note">(Level 1 page)</span>
+    ├── components/
+    │   ├── TranscriptionLevel.jsx <span class="file-note">(Reusable quiz: show Devanāgarī, player types IAST)</span>
+    │   ├── IastKeys.jsx <span class="file-note">(On-screen buttons for IAST characters such as ā, ṭ, ś)</span>
+    │   ├── LessonDialog.jsx <span class="file-note">(Modal that shows a level's lesson)</span>
+    │   ├── LessonButton.jsx <span class="file-note">(Light bulb button that reopens the lesson)</span>
+    │   └── ProgressBar.jsx
+    ├── data/
+    │   └── republic.js <span class="file-note">(Level 1 questions)</span>
+    └── lessons/
+        └── RepublicLesson.jsx <span class="file-note">(Level 1 lesson content)</span></pre>
+
+          <h3>How a level fits together</h3>
+
+          <p>Each playable level has an entry in <code>src/levels.js</code> with a <code>path</code>, a question set in <code>src/data/</code>, a lesson in <code>src/lessons/</code>, and a page in <code>src/pages/</code> that passes those into a shared level component (currently <code>TranscriptionLevel</code>). The page&rsquo;s route is registered in <code>src/App.jsx</code>. Levels without a <code>path</code> show as &ldquo;Coming soon&rdquo; on the homepage.</p>
+
+          <p>A question counts toward progress only if the player answers it correctly without opening the lesson first. Progress is saved per level in <code>localStorage</code> under the <code>jtte-progress</code> key.</p>
 
           <h2 id="bonus-content">IV. Bonus Content</h2>
 

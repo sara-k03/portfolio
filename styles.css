@@ -828,6 +828,29 @@ body {
   font-style: italic;
 }
 
+.file-tree {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--cream);
+  margin: 0 0 24px;
+  overflow-x: auto;
+}
+
+.file-note {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.project-detail p code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.85em;
+  padding: 1px 6px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+}
+
 /* ---------- Footer ---------- */
 footer {
   text-align: center;
