@@ -62,8 +62,8 @@
               </tr>
               <tr>
                 <td>Maratha</td>
-                <td>Learn all the possible combinations of the consonants and vowels (in Devanagari).</td>
-                <td>TBA</td>
+                <td>Learn the most widely used combinations of the consonants and vowels (in Devanagari).</td>
+                <td>Level 2 drills the different Devanagari combinations using a falling character game. The user has to transcribe different Devanagari combinations before they fall through the bottom of the screen. </td>
               </tr>
               <tr>
                 <td>Vijayanagara</td>
@@ -125,9 +125,11 @@
 
           <h2 id="lessons">II. Lessons</h2>
 
-          <p>This section is just going to list the lesson components of each level. Currently, only level 1 (Republic) has been released, so there is only one lesson.</p>
+          <p>This section is just lists the lesson components of each level. Currently, level 1 (Republic) and level 2 (Maratha) have been released.</p>
 
           <p>Lesson 1: <a href="journey-to-the-east/lesson-1.html">Svarāḥ and Vyañjanāḥ</a></p>
+
+          <p>Lesson 2: <a href="journey-to-the-east/lesson-2.html">Mātrāḥ and Saṃyuktākṣarāṇi</a></p>
 
           <h2 id="code-structure">III. Code Structure</h2>
 
@@ -165,9 +167,15 @@
 
           <h3>How a level fits together</h3>
 
-          <p>Each playable level has an entry in <code>src/levels.js</code> with a <code>path</code>, a question set in <code>src/data/</code>, a lesson in <code>src/lessons/</code>, and a page in <code>src/pages/</code> that passes those into a shared level component (<code>TranscriptionLevel</code> or <code>FallingLevel</code>). The page&rsquo;s route is registered in <code>src/App.jsx</code>. Levels without a <code>path</code> show as &ldquo;Coming soon&rdquo; on the homepage.</p>
+          <p>Every level is made of the same few pieces: an entry in <code>src/levels.js</code>, a set of questions in <code>src/data/</code>, a lesson in <code>src/lessons/</code>, and a page in <code>src/pages/</code>. The page hands the questions and lesson to one of the shared game components in <code>src/components/</code>, which handles the actual gameplay. This means that a new level can reuse an existing game format just by supplying new questions and a new lesson. Each page also gets its own route in <code>src/App.jsx</code>. Levels that aren&rsquo;t playable yet show as &ldquo;Coming soon&rdquo; on the homepage.</p>
 
-          <p>A question counts toward progress only if the player answers it correctly without opening the lesson first. Progress is saved per level in <code>localStorage</code> under the <code>jtte-progress</code> key.</p>
+          <p>Progress is tracked per level and saved in <code>localStorage</code>. What counts toward progress depends on the level&rsquo;s format, but in general, the player only earns credit for answers they get right on their own.</p>
+
+          <h3>Level 1 (Republic): A Simple Quiz Game</h3>
+
+          <p>The player sees one Devanāgarī letter at a time and types it in IAST, using either their keyboard or the on-screen buttons for characters like ā, ṭ, and ś. After checking, the game shows whether the answer was right (and the correct transcription if it wasn&rsquo;t), then moves on to the next letter.</p>
+
+          <p>The question set in <code>src/data/republic.js</code> has 48 letters: 14 vowels (svarāḥ) and 34 consonants (vyañjanāḥ). Letters the player hasn&rsquo;t gotten right yet are picked first, and the same letter is never shown twice in a row. The lesson opens at the start of the level and can be reopened with the light bulb button, but opening it mid-question means that question won&rsquo;t count toward progress.</p>
 
           <h3>Level 2 (Maratha): The Falling Akṣara Game</h3>
 
@@ -190,7 +198,7 @@
 
           <h2 id="ai-usage">V. AI Usage</h2>
 
-          <p>Claude Code was used as a coding assistant for this.</p>
+          <p>Claude Code was used as a coding assistant for the game.</p>
 
           <p>I mostly try to avoid writing lessons (or other word-heavy content) with AI. Lesson 1 is written by me. However, I am new to learning the Devanagari script myself, so Claude helped me heavily with writing Lesson 2. Claude also helped me come up with the most useful conjunct consonant pairs. As I learn more, increasingly less AI will be used in the writing.</p>
 
