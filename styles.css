@@ -842,7 +842,8 @@ body {
   opacity: 0.6;
 }
 
-.project-detail p code {
+.project-detail p code,
+.project-detail li code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
   font-size: 0.85em;
   padding: 1px 6px;

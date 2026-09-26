@@ -39,6 +39,7 @@
             <li><a href="#lessons">Lessons</a></li>
             <li><a href="#code-structure">Code Structure</a></li>
             <li><a href="#bonus-content">Bonus Content</a></li>
+            <li><a href="#ai-usage">AI Usage</a></li>
           </ol>
 
           <h2 id="concept">I. Concept</h2>
@@ -135,33 +136,49 @@
           <pre class="file-tree">├── index.html <span class="file-note">(Vite entry HTML; loads Noto Serif Devanagari)</span>
 ├── vite.config.js <span class="file-note">(Sets the /journey-to-the-east/ base path for GitHub Pages)</span>
 ├── .github/workflows/deploy.yml <span class="file-note">(Builds and deploys to GitHub Pages on every push to main)</span>
-├── background-images/ <span class="file-note">(Background photos plus the resized *-web.jpg copies the site uses)</span>
+├── background-images/ <span class="file-note">(Background photos; the site uses the *-web.jpg copies and raigad-fort.jpg)</span>
 ├── fonts/jaini/ <span class="file-note">(Jaini font files and license)</span>
 └── src/
     ├── main.jsx <span class="file-note">(Mounts &lt;App /&gt; and imports global styles)</span>
     ├── App.jsx <span class="file-note">(Routes; uses HashRouter so deep links work on GitHub Pages)</span>
     ├── levels.js <span class="file-note">(List of all 12 levels: name, description, route, question count, background)</span>
-    ├── progress.js <span class="file-note">(Reads/writes player progress in localStorage)</span>
+    ├── progress.js <span class="file-note">(Reads/writes progress, high scores, and seen lessons in localStorage)</span>
     ├── styles.css <span class="file-note">(All styling)</span>
     ├── pages/
     │   ├── Home.jsx <span class="file-note">(Level select screen with a progress bar per level)</span>
-    │   └── Republic.jsx <span class="file-note">(Level 1 page)</span>
+    │   ├── Republic.jsx <span class="file-note">(Level 1 page)</span>
+    │   └── Maratha.jsx <span class="file-note">(Level 2 page)</span>
     ├── components/
     │   ├── TranscriptionLevel.jsx <span class="file-note">(Reusable quiz: show Devanāgarī, player types IAST)</span>
+    │   ├── FallingLevel.jsx <span class="file-note">(Reusable falling game with game and practice modes)</span>
     │   ├── IastKeys.jsx <span class="file-note">(On-screen buttons for IAST characters such as ā, ṭ, ś)</span>
-    │   ├── LessonDialog.jsx <span class="file-note">(Modal that shows a level's lesson)</span>
+    │   ├── LessonDialog.jsx <span class="file-note">(Modal that shows a level&rsquo;s lesson)</span>
     │   ├── LessonButton.jsx <span class="file-note">(Light bulb button that reopens the lesson)</span>
     │   └── ProgressBar.jsx
     ├── data/
-    │   └── republic.js <span class="file-note">(Level 1 questions)</span>
+    │   ├── republic.js <span class="file-note">(Level 1 questions)</span>
+    │   └── maratha.js <span class="file-note">(Level 2 consonants, conjunct list, and generated akṣaras)</span>
     └── lessons/
-        └── RepublicLesson.jsx <span class="file-note">(Level 1 lesson content)</span></pre>
+        ├── LessonParts.jsx <span class="file-note">(Shared lesson building blocks: Sound, Deva)</span>
+        ├── RepublicLesson.jsx <span class="file-note">(Level 1 lesson content)</span>
+        └── MarathaLesson.jsx <span class="file-note">(Level 2 lesson, with the mātrā explorer and akṣara builder)</span></pre>
 
           <h3>How a level fits together</h3>
 
-          <p>Each playable level has an entry in <code>src/levels.js</code> with a <code>path</code>, a question set in <code>src/data/</code>, a lesson in <code>src/lessons/</code>, and a page in <code>src/pages/</code> that passes those into a shared level component (currently <code>TranscriptionLevel</code>). The page&rsquo;s route is registered in <code>src/App.jsx</code>. Levels without a <code>path</code> show as &ldquo;Coming soon&rdquo; on the homepage.</p>
+          <p>Each playable level has an entry in <code>src/levels.js</code> with a <code>path</code>, a question set in <code>src/data/</code>, a lesson in <code>src/lessons/</code>, and a page in <code>src/pages/</code> that passes those into a shared level component (<code>TranscriptionLevel</code> or <code>FallingLevel</code>). The page&rsquo;s route is registered in <code>src/App.jsx</code>. Levels without a <code>path</code> show as &ldquo;Coming soon&rdquo; on the homepage.</p>
 
           <p>A question counts toward progress only if the player answers it correctly without opening the lesson first. Progress is saved per level in <code>localStorage</code> under the <code>jtte-progress</code> key.</p>
+
+          <h3>Level 2 (Maratha): The Falling Akṣara Game</h3>
+
+          <p>Akṣaras fall one at a time, and the player types each one in IAST before it hits the ground. An answer clears as soon as it matches.</p>
+
+          <ul>
+            <li><strong>Game mode:</strong> The user has 3 lives, and each akṣara falls a little faster than the last (8 seconds at first, down to 3). Only game mode counts toward progress. The best score is saved under the <code>jtte-high-scores</code> key.</li>
+            <li><strong>Practice mode:</strong> Practice mode doesn&rsquo;t have a cap on the number of lives, but it also doesn&rsquo;t contribute to the progress. The player picks the akṣaras (all, consonant + mātrā, or conjuncts) and a fixed speed, and can reveal the answer.</li>
+          </ul>
+
+          <p>The pool is built in <code>src/data/maratha.js</code>: 33 consonants and 191 conjuncts, each in 15 forms (the inherent a, 11 mātrās, anusvāra, visarga, and virāma), for 3,360 akṣaras. To add or remove a conjunct, edit its line in <code>conjunctGroups</code>. The progress bar counts forms, and a group (one consonant or conjunct) is complete once all 15 of its forms are done. The lesson opens automatically only on the first visit (<code>jtte-lessons-seen</code>).</p>
 
           <h2 id="bonus-content">IV. Bonus Content</h2>
 
@@ -170,6 +187,12 @@
           <ul>
             <li><a href="journey-to-the-east/nirvana-shatkam.html">Nirvāṇa Ṣaṭkam</a></li>
           </ul>
+
+          <h2 id="ai-usage">V. AI Usage</h2>
+
+          <p>Claude Code was used as a coding assistant for this.</p>
+
+          <p>I mostly try to avoid writing lessons (or other word-heavy content) with AI. Lesson 1 is written by me. However, I am new to learning the Devanagari script myself, so Claude helped me heavily with writing Lesson 2. Claude also helped me come up with the most useful conjunct consonant pairs. As I learn more, increasingly less AI will be used in the writing.</p>
 
         </section>
 
