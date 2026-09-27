@@ -91,8 +91,15 @@
   email.href = 'mailto:sarayu.kondaveeti@gmail.com';
   email.textContent = 'Email';
 
+  var github = document.createElement('a');
+  github.href = 'https://github.com/sara-k03';
+  github.target = '_blank';
+  github.rel = 'noopener noreferrer';
+  github.textContent = 'GitHub';
+
   footer.appendChild(linkedin);
   footer.appendChild(email);
+  footer.appendChild(github);
   panel.appendChild(footer);
 
   mount.appendChild(panel);
