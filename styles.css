@@ -1083,3 +1083,24 @@ footer {
 @media (max-width: 560px) {
   .hero { min-height: 46vh; }
 }
+
+.project-detail figure.figure-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.project-detail figure.figure-grid img {
+  width: 200px;
+}
+
+.project-detail figure.figure-grid img.wide {
+  width: 412px;
+}
+
+.project-detail h3.sample-heading {
+  color: var(--cream);
+  font-weight: 700;
+}
