@@ -63,7 +63,7 @@
               <tr>
                 <td>Maratha</td>
                 <td>Learn the most widely used combinations of the consonants and vowels (in Devanagari).</td>
-                <td>Level 2 drills the different Devanagari combinations using a falling character game. The user has to transcribe different Devanagari combinations before they fall through the bottom of the screen. </td>
+                <td>TBA</td>
               </tr>
               <tr>
                 <td>Vijayanagara</td>
@@ -129,8 +129,6 @@
 
           <p>Lesson 1: <a href="journey-to-the-east/lesson-1.html">Svarāḥ and Vyañjanāḥ</a></p>
 
-          <p>Lesson 2: <a href="journey-to-the-east/lesson-2.html">Mātrāḥ and Saṃyuktākṣarāṇi</a></p>
-
           <h2 id="code-structure">III. Code Structure</h2>
 
           <p>This game is currently front-end only, and player progress data is stored locally (it does not sync across devices or browsers). A proper backend will be designed after the frontend of the game has been fleshed out. The game is also a single-page React app built with Vite and deployed to GitHub Pages.</p>
@@ -177,16 +175,9 @@
 
           <p>The question set in <code>src/data/republic.js</code> has 48 letters: 14 vowels (svarāḥ) and 34 consonants (vyañjanāḥ). Letters the player hasn&rsquo;t gotten right yet are picked first, and the same letter is never shown twice in a row. The lesson opens at the start of the level and can be reopened with the light bulb button, but opening it mid-question means that question won&rsquo;t count toward progress.</p>
 
-          <h3>Level 2 (Maratha): The Falling Akṣara Game</h3>
+          <h3>Level 2 (Maratha): TBA</h3>
 
-          <p>Akṣaras fall one at a time, and the player types each one in IAST before it hits the ground. An answer clears as soon as it matches.</p>
-
-          <ul>
-            <li><strong>Game mode:</strong> The user has 3 lives, and each akṣara falls a little faster than the last (8 seconds at first, down to 3). Only game mode counts toward progress. The best score is saved under the <code>jtte-high-scores</code> key.</li>
-            <li><strong>Practice mode:</strong> Practice mode doesn&rsquo;t have a cap on the number of lives, but it also doesn&rsquo;t contribute to the progress. The player picks the akṣaras (all, consonant + mātrā, or conjuncts) and a fixed speed, and can reveal the answer.</li>
-          </ul>
-
-          <p>The pool is built in <code>src/data/maratha.js</code>: 33 consonants and 191 conjuncts, each in 15 forms (the inherent a, 11 mātrās, anusvāra, visarga, and virāma), for 3,360 akṣaras. To add or remove a conjunct, edit its line in <code>conjunctGroups</code>. The progress bar counts forms, and a group (one consonant or conjunct) is complete once all 15 of its forms are done. The lesson opens automatically only on the first visit (<code>jtte-lessons-seen</code>).</p>
+          <p>TBA</p>
 
           <h2 id="bonus-content">IV. Bonus Content</h2>
 
@@ -200,7 +191,7 @@
 
           <p>Claude Code was used as a coding assistant for the game.</p>
 
-          <p>I mostly try to avoid writing lessons (or other word-heavy content) with AI. Lesson 1 is written by me. However, I am new to learning the Devanagari script myself, so Claude helped me heavily with writing Lesson 2. Claude also helped me come up with the most useful conjunct consonant pairs. As I learn more, increasingly less AI will be used in the writing.</p>
+          <p>I mostly avoid writing lessons (or other word-heavy content) with AI. </p>
 
         </section>
 
