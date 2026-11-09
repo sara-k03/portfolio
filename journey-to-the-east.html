@@ -46,7 +46,7 @@
 
           <p>Each level is named after a different Indian empire (with the exception of the first and last levels). Each progressive level takes you backwards in chronology, while the concepts get increasingly difficult.</p>
 
-          <p>Below is a table of the levels and what they tentatively will cover. Currently, I have only developed Levels 1 and 2.</p>
+          <p>Below is a table of the levels and what they tentatively will cover. Currently, I have only developed Level 1.</p>
 
           <div class="table-wrap">
             <table class="lesson-table levels-table">
@@ -121,53 +121,71 @@
             </table>
           </div>
 
-          <p>There may also be possible bonus levels to learn other Indian scripts.</p>
+          <p>There are also currently one bonus level for learning the Telugu script.</p>
+
+          <div class="table-wrap">
+            <table class="lesson-table levels-table">
+              <tr>
+                <th>Level</th>
+                <th>Concept</th>
+                <th>Format</th>
+              </tr>
+              <tr>
+                <td>Godavari</td>
+                <td>Learn the Telugu alphabet.</td>
+                <td>This also is a typical quiz game, but it contains all possible character combinations for the Telugu alphabet.</td>
+              </tr>
+            </table>
+          </div>
 
           <h2 id="lessons">II. Lessons</h2>
 
-          <p>This section is just lists the lesson components of each level. Currently, level 1 (Republic) and level 2 (Maratha) have been released.</p>
+          <p>This section is just lists the lesson components of each level. Currently, level 1 (Republic) and bonus level 1 (Godavari) have been released.</p>
 
           <p>Lesson 1: <a href="journey-to-the-east/lesson-1.html">Svarāḥ and Vyañjanāḥ</a></p>
+
+          <p>Bonus Lesson 1: Aksharalu (TBA)</p>
 
           <h2 id="code-structure">III. Code Structure</h2>
 
           <p>This game is currently front-end only, and player progress data is stored locally (it does not sync across devices or browsers). A proper backend will be designed after the frontend of the game has been fleshed out. The game is also a single-page React app built with Vite and deployed to GitHub Pages.</p>
 
-          <pre class="file-tree">├── index.html <span class="file-note">(Vite entry HTML; loads Noto Serif Devanagari)</span>
+          <pre class="file-tree">├── index.html <span class="file-note">(Vite entry HTML; loads Noto Serif Devanagari and Noto Serif Telugu)</span>
 ├── vite.config.js <span class="file-note">(Sets the /journey-to-the-east/ base path for GitHub Pages)</span>
 ├── .github/workflows/deploy.yml <span class="file-note">(Builds and deploys to GitHub Pages on every push to main)</span>
-├── background-images/ <span class="file-note">(Background photos; the site uses the *-web.jpg copies and raigad-fort.jpg)</span>
+├── background-images/ <span class="file-note">(Background photos; the site uses the *-web.jpg copies and godavari.jpg)</span>
 ├── fonts/jaini/ <span class="file-note">(Jaini font files and license)</span>
 └── src/
     ├── main.jsx <span class="file-note">(Mounts &lt;App /&gt; and imports global styles)</span>
     ├── App.jsx <span class="file-note">(Routes; uses HashRouter so deep links work on GitHub Pages)</span>
-    ├── levels.js <span class="file-note">(List of all 12 levels: name, description, route, question count, background)</span>
-    ├── progress.js <span class="file-note">(Reads/writes progress, high scores, and seen lessons in localStorage)</span>
+    ├── levels.js <span class="file-note">(The 12 main levels plus the Telugu bonus levels: name, description, route, question count, background)</span>
+    ├── progress.js <span class="file-note">(Reads/writes progress, high scores, and seen lessons in localStorage; resets progress)</span>
     ├── styles.css <span class="file-note">(All styling)</span>
     ├── pages/
     │   ├── Home.jsx <span class="file-note">(Level select screen with a progress bar per level)</span>
     │   ├── Republic.jsx <span class="file-note">(Level 1 page)</span>
-    │   └── Maratha.jsx <span class="file-note">(Level 2 page)</span>
+    │   └── Godavari.jsx <span class="file-note">(Telugu bonus level 1 page)</span>
     ├── components/
-    │   ├── TranscriptionLevel.jsx <span class="file-note">(Reusable quiz: show Devanāgarī, player types IAST)</span>
-    │   ├── FallingLevel.jsx <span class="file-note">(Reusable falling game with game and practice modes)</span>
+    │   ├── TranscriptionLevel.jsx <span class="file-note">(Reusable quiz: show a letter, player types its transliteration)</span>
     │   ├── IastKeys.jsx <span class="file-note">(On-screen buttons for IAST characters such as ā, ṭ, ś)</span>
     │   ├── LessonDialog.jsx <span class="file-note">(Modal that shows a level&rsquo;s lesson)</span>
     │   ├── LessonButton.jsx <span class="file-note">(Light bulb button that reopens the lesson)</span>
+    │   ├── SettingsButton.jsx <span class="file-note">(Gear button that opens settings)</span>
+    │   ├── SettingsDialog.jsx <span class="file-note">(Settings modal with reset-progress options)</span>
     │   └── ProgressBar.jsx
     ├── data/
     │   ├── republic.js <span class="file-note">(Level 1 questions)</span>
-    │   └── maratha.js <span class="file-note">(Level 2 consonants, conjunct list, and generated akṣaras)</span>
+    │   └── godavari.js <span class="file-note">(Telugu letters with transliterations for the Godavari bonus level)</span>
     └── lessons/
         ├── LessonParts.jsx <span class="file-note">(Shared lesson building blocks: Sound, Deva)</span>
         ├── RepublicLesson.jsx <span class="file-note">(Level 1 lesson content)</span>
-        └── MarathaLesson.jsx <span class="file-note">(Level 2 lesson, with the mātrā explorer and akṣara builder)</span></pre>
+        └── GodavariLesson.jsx <span class="file-note">(Telugu bonus lesson: charts of achulu, hallulu, guninthalu, and ankelu)</span></pre>
 
           <h3>How a level fits together</h3>
 
           <p>Every level is made of the same few pieces: an entry in <code>src/levels.js</code>, a set of questions in <code>src/data/</code>, a lesson in <code>src/lessons/</code>, and a page in <code>src/pages/</code>. The page hands the questions and lesson to one of the shared game components in <code>src/components/</code>, which handles the actual gameplay. This means that a new level can reuse an existing game format just by supplying new questions and a new lesson. Each page also gets its own route in <code>src/App.jsx</code>. Levels that aren&rsquo;t playable yet show as &ldquo;Coming soon&rdquo; on the homepage.</p>
 
-          <p>Progress is tracked per level and saved in <code>localStorage</code>. What counts toward progress depends on the level&rsquo;s format, but in general, the player only earns credit for answers they get right on their own.</p>
+          <p>Progress is tracked per level and saved in <code>localStorage</code>. What counts toward progress depends on the level&rsquo;s format, but in general, the player only earns credit for answers they get right on their own. Progress can be reset for a single level or for every level from the settings menu (the gear button).</p>
 
           <h3>Level 1 (Republic): A Simple Quiz Game</h3>
 
@@ -175,9 +193,9 @@
 
           <p>The question set in <code>src/data/republic.js</code> has 48 letters: 14 vowels (svarāḥ) and 34 consonants (vyañjanāḥ). Letters the player hasn&rsquo;t gotten right yet are picked first, and the same letter is never shown twice in a row. The lesson opens at the start of the level and can be reopened with the light bulb button, but opening it mid-question means that question won&rsquo;t count toward progress.</p>
 
-          <h3>Level 2 (Maratha): TBA</h3>
+          <h3>Bonus Level 1 (Godavari): TBA</h3>
 
-          <p>TBA</p>
+          <p>This level drills all possible character combinations in the Telugu script. </p>
 
           <h2 id="bonus-content">IV. Bonus Content</h2>
 
