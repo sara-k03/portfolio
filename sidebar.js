@@ -17,7 +17,6 @@
   // (e.g. viewed over file://).
   var NAV = [
     { label: 'Journey to the East', href: 'journey-to-the-east.html' },
-    { label: 'Measuring Viscosity', href: 'measuring-viscosity.html' },
     { label: 'Writing', href: 'writing.html' },
     { label: 'Disordered Metamaterials', href: 'disordered-metamaterials.html' }
   ];
@@ -64,7 +63,7 @@
     link.href = root + item.href;
     link.textContent = item.label;
     // Also highlight a project while on one of its subpages
-    // (e.g. measuring-viscosity/... under Measuring Viscosity).
+    // (e.g. journey-to-the-east/... under Journey to the East).
     var base = item.href.replace(/\.html$/, '');
     if (isActive(item.href) || path.indexOf('/' + base + '/') !== -1) {
       link.classList.add('active');
